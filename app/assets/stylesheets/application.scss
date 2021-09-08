@@ -10,6 +10,13 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
  */
+
+@import './base/reset.css';
+@import './base/splash.css';
+@import './base//signin_page.css';
+@import './base/signup_page.css';
+@import './base/dashboard.css';
+@import './base/portfolio.css';
+

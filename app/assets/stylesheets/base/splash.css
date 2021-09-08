@@ -1,0 +1,44 @@
+.splash-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left-splash-header{
+    margin-left: 10px;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+.login-button{
+    background-color: white;
+    border: none;
+    font-family: avenir;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.login-button:hover{
+    color: rgb(29, 197, 29);
+}
+
+.signin-button{
+    background-color: rgb(29, 197, 29);
+    font-family: avenir;
+    font-weight: bold;
+    margin: 15px;
+    font-size: 1.2em;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border: 1px solid white;
+    border-radius: 25px;
+}
+
+.signin-button:hover{
+    background-color: green;
+}

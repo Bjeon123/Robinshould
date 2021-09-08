@@ -1,0 +1,50 @@
+.signin-page{
+    display: flex;
+    align-items: center;
+}
+
+.login-form h1{
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.login-form input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 400px;
+    height: 25px;
+}
+.login-form input:focus{
+    border: 2px solid;
+    border-color: rgb(29, 197, 29);
+}
+
+.login-form button{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.login-form{
+    font-family: avenir;
+    margin-left: 5%;
+}
+
+.demo-button{
+    background-color: white;
+    border: none;
+    color: rgb(29, 197, 29);
+}
+
+.signin-button-form{
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    background-color: rgb(29, 197, 29);
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+.signin-button-form:hover{
+    background-color: green;
+}
