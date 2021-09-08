@@ -33,7 +33,6 @@ class LoginForm extends React.Component {
     }
 
     handleChange(field) {
-        console.log(this.state)
         return e => this.setState({
             [field]: e.currentTarget.value
         });

@@ -3,7 +3,6 @@ import React from 'react'
 class Portfolio extends React.Component{
     constructor(props){
         super(props)
-        console.log(this.props)
     }
     render(){
         return(
