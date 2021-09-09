@@ -35,6 +35,7 @@
     "babel-loader": "^8.2.2",
     "chart.js": "^3.5.1",
     "css-loader": "^6.2.0",
+    "heroku": "^7.59.0",
     "install": "^0.13.0",
     "npm": "^7.22.0",
     "react": "^17.0.2",
