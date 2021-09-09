@@ -1,13 +1,6 @@
 import React from 'react'
 import SplashHeader from './splash_header' 
 import { Link } from 'react-router-dom';
-import phone from '../../images/splashPhone.png'
-import coolBalloon from '../../images/coolBalloon.png'
-import reactLogo from '../../images/react.png'
-import reduxLogo from '../../images/redux.png'
-import rubyLogo from '../../images/ruby.png'
-import railsLogo from '../../images/rails.png'
-import postgresLogo from '../../images/postgresql.png'
 
 const Splash = (props) =>{
     return(
@@ -26,22 +19,22 @@ const Splash = (props) =>{
                         <button className="signin-button">Sign Up</button>
                     </Link>
                 </div>
-                <img src={phone} />
+                <img src={window.phone} />
             </div>
             <div className="second-splash-component">
-                <img src={coolBalloon}/>
+                <img src={window.coolBalloon}/>
                 <div className="technologies">
                     <h1>Technologies Used</h1>
                     <h2>React</h2>
-                    <img className="tech-logos" width="60px" src={reactLogo}/>
+                    <img className="tech-logos" width="60px" src={window.react}/>
                     <h2>Redux</h2>
-                    <img className="tech-logos" width="60px" src={reduxLogo} />
+                    <img className="tech-logos" width="60px" src={window.redux} />
                     <h2>Ruby</h2>
-                    <img className="tech-logos" width="60px" src={rubyLogo} />
+                    <img className="tech-logos" width="60px" src={window.ruby} />
                     <h2>Rails</h2>
-                    <img className="tech-logos" width="60px" src={railsLogo} />
+                    <img className="tech-logos" width="60px" src={window.rails} />
                     <h2>PostgreSql</h2>
-                    <img className="tech-logos" width="60px" src={postgresLogo} />
+                    <img className="tech-logos" width="60px" src={window.postgres} />
                 </div>
             </div>
             <div className="splash-footer">

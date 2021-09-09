@@ -1,5 +1,5 @@
 import React from 'react'
-import loginPhoto from '../../images/login.png'
+
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
@@ -45,7 +45,7 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div className="signin-page">
-                <img width="50%" src={loginPhoto}></img>
+                <img width="50%" src={window.login}></img>
                 <form width="50%" className="login-form">
                     <h1>Welcome to Robinshould</h1>
                     <label> Email

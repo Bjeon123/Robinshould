@@ -1,12 +1,10 @@
 import React from 'react'
-import tree from '../../images/tree.png'
-import greenTree from '../../images/greenTree.png'
 
 const dashboardNav =(props)=>{
     return(
         <nav className="dash-nav">
             <div className="dash-nav-left">
-                <img className="tree" width="4%" src={tree}/>
+                <img className="tree" src={window.tree} width="4%"/>
                 <input className="search" type="text" placeholder="Search" />
             </div>
             <div className="dash-nav-right">

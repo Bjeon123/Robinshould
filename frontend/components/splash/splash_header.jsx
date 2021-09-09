@@ -1,13 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import logo from '../../images/logo.png'
-import splashVideo from '../../images/changeLater.png'
 
 
 const SplashHeader = () =>(
     <nav className='splash-header'>
         <div className='left-splash-header'>
-            <img width="40%" src={logo}/>
+            <img width="40%" src={window.logo}/>
         </div>
         <div className='right-splash-header'>
             <Link to={"/login"}>

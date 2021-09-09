@@ -1,5 +1,4 @@
 import React from 'react'
-import logo from '../../images/logo.png'
 class LoginForm extends React.Component{
     constructor(props){
         super(props);
@@ -45,7 +44,7 @@ class LoginForm extends React.Component{
     render(){
         return(
             <div className="signup-page">
-                <img width="13%" src={logo}/>
+                <img width="13%" src={window.logo}/>
                 <form className="signup-form">
                     <div className="name-form">
                         <label> 
