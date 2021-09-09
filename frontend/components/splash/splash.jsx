@@ -1,17 +1,63 @@
 import React from 'react'
 import SplashHeader from './splash_header' 
 import { Link } from 'react-router-dom';
-import splashVideo from '../../images/changeLater.png'
-import Pic from '../../images/pic.png'
+import phone from '../../images/splashPhone.png'
+import coolBalloon from '../../images/coolBalloon.png'
+import reactLogo from '../../images/react.png'
+import reduxLogo from '../../images/redux.png'
+import rubyLogo from '../../images/ruby.png'
+import railsLogo from '../../images/rails.png'
+import postgresLogo from '../../images/postgresql.png'
 
-const Spash = (props) =>{
+const Splash = (props) =>{
     return(
-        <div>
+        <div className="splash" >
             <SplashHeader></SplashHeader>
-            <img width="100%" src={splashVideo} />
-            <img width="100%" src={Pic} />
+            <div className="first-splash-component">
+                <div className="splash-app-description">
+                    <div>
+                        <h1>Investing for</h1>
+                        <h1>Everyone</h1>
+                    </div>
+                    <div>
+                        <h3 className="description">Robinshould is a clone of the the investment website called Robinhood, a website that allows people to trade stocks and other financial instruments with no commission costs. Below are the technologies that I used to create this Application.</h3>
+                    </div>
+                    <Link to={"/signup"}>
+                        <button className="signin-button">Sign Up</button>
+                    </Link>
+                </div>
+                <img src={phone} />
+            </div>
+            <div className="second-splash-component">
+                <img src={coolBalloon}/>
+                <div className="technologies">
+                    <h1>Technologies Used</h1>
+                    <h2>React</h2>
+                    <img className="tech-logos" width="60px" src={reactLogo}/>
+                    <h2>Redux</h2>
+                    <img className="tech-logos" width="60px" src={reduxLogo} />
+                    <h2>Ruby</h2>
+                    <img className="tech-logos" width="60px" src={rubyLogo} />
+                    <h2>Rails</h2>
+                    <img className="tech-logos" width="60px" src={railsLogo} />
+                    <h2>PostgreSql</h2>
+                    <img className="tech-logos" width="60px" src={postgresLogo} />
+                </div>
+            </div>
+            <div className="splash-footer">
+                <div>
+                    <h1>Links</h1>
+                    <a href="https://github.com/Bjeon123"><h2>Github</h2></a>
+                    <a href="https://www.linkedin.com/in/byung-jeon-01a68812a/"><h2>LinkedIn</h2></a>
+                </div>
+                <div>
+                    <h1>Contact Me</h1>
+                    <h2>SamuelJeon99@gmail.com</h2>
+                    <h2>718-873-5445</h2>
+                </div>
+            </div>
         </div>
     )
 }
 
-export default Spash
+export default Splash
