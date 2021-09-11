@@ -4,9 +4,12 @@ import DashNav from '../dashboard/dashboard_nav'
 
 const Stock = (props) =>{
     let dataLastIdx = props.data.chart.length-1;
-    let refLine = props.data.chart[0]['average'].toString();
-    let color = props.data.chart[0]['average'] < props.data.chart[dataLastIdx]['average'] ? "green" : "red" ;
-    console.log(props)
+    let refLine = props.data.chart[0]['close'].toString();
+    let color = props.data.chart[0]['close'] < props.data.chart[dataLastIdx]['close'] ? "green" : "red" ;
+    let dataHasTime = true;
+    if (props.timeframe == "3M" || props.timeframe == "1Y" || props.timeframe == "5Y"){
+        dataHasTime = false;
+    }
     return(
         <div className="stocks-page">
             <DashNav/>
@@ -14,7 +17,7 @@ const Stock = (props) =>{
                 <div className="stocks-page-chart">
                     <h1>{props.compInfo.company.companyName}</h1>
                     <h1>$145.43</h1>
-                    <LineGraph data={props.data} color={color} refLine={refLine}></LineGraph>
+                    <LineGraph data={props.data} color={color} refLine={refLine} dataHasTime={dataHasTime}></LineGraph>
                     <button onClick={() =>props.changeData("1W")}>1D</button>
                     <button onClick={() =>props.changeData("1W")}>1W</button>
                     <button onClick={() =>props.changeData("1M")}>1M</button>

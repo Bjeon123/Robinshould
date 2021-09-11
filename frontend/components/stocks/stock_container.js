@@ -20,7 +20,7 @@ class StockContainer extends React.Component{
         this.setState({ timeframe: timeframe })
         const stock = this.props.stock
         fetchStockStats(stock).then((stats) => this.setState({ stats: stats }))
-        if (timeframe === "1W" || this.state.timeframe === null) {
+        if (timeframe === "1W" || this.state.timeframe === null){
             fetchStockWeekData(stock).then((data) => this.setState({ data: data }))
         }
         else if (timeframe === "1M") {
@@ -39,6 +39,7 @@ class StockContainer extends React.Component{
 
 
     componentDidMount(){
+        console.log('hit')
         const stock = this.props.stock
         fetchStockStats(stock).then((stats) =>this.setState({stats: stats}))
         if (this.state.timeframe === "1W" || this.state.timeframe === null){
@@ -63,7 +64,7 @@ class StockContainer extends React.Component{
             return null;
         }
         return(
-            <Stock stock ={this.props.stock} data={this.state.data} compInfo={this.state.stats} changeData={this.changeData}/>
+            <Stock timeframe={this.state.timeframe} stock ={this.props.stock} data={this.state.data} compInfo={this.state.stats} changeData={this.changeData}/>
         )
     }
 }
