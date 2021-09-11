@@ -22,7 +22,7 @@ const LineGraph = (props)=>{
                 <YAxis hide="true" type="number" domain={["150","154"]}/>
                 <Tooltip/>
                 <ReferenceLine
-                    y='154.7'
+                    y={props.refLine}
                     stroke="#b3b5b5"
                     strokeDasharray="2 5"
                     isFront={false}
