@@ -17,7 +17,6 @@ class DashBoard extends React.Component{
         return (
             <div className="dashboard">
                 <DashNav></DashNav>
-                <Porfolio user={this.props.user}></Porfolio>
                 <button onClick={this.logout}>Logout</button>
             </div>
         )
