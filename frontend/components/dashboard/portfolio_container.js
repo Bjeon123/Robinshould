@@ -90,11 +90,11 @@ class PortfolioContainer extends React.Component {
         let newData = { [dataFormatType]:[]}
         for(const ticker in data){
             for (let i = 0; i < data[ticker][dataFormatType].length;i++){
+                let newRow={};
                 if(firstIteration === true){
-                    let newRow = {};
-                    newRow.close = 0;
                     newRow.date = data[ticker][dataFormatType][i].date
                     newRow.minute = data[ticker][dataFormatType][i].minute
+                    newRow.close = 0;
                     newRow.close += (data[ticker][dataFormatType][i].close * sharesHashMap[ticker]) + this.props.user.total_capital
                     newData[dataFormatType].push(newRow)
                 }
