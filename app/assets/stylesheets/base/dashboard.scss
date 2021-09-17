@@ -1,5 +1,10 @@
-.dashboard{
+.dashboard-container{
     background-color: black;
+}
+.dashboard{
+    margin-left: 15%;
+    background-color: black;
+    display: flex;
     width: 100%;
     height: 800px;
     color: white;
@@ -9,13 +14,16 @@
     display: flex;
     align-items: center;
 }
-
+.dash-nav-right {
+    display: flex;
+    align-items: center;
+}
 .dash-nav-right button{
     background-color: transparent;
     color: white;
     font-weight: bold;
     border: none;
-    margin-right: 18px;
+    margin-right: 24px;
 }
 
 .dash-nav-right button:hover{
@@ -26,7 +34,6 @@
     margin-right: 15%;
     margin-left: 5%;
 }
-
 
 .search{
     width: 60%;
@@ -43,7 +50,71 @@
 }
 
 .dash-nav{
+    position: fixed;
+    z-index: 1;
+    padding-top: 3px;
+    width: 100%;
+    height: 45px;
+    background-color: black;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.account-dropdown{
+    z-index: 1;
+    font-family: avenir;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    right: 1%;
+    top: 50px;
+    color: white;
+    width: 20%;
+    background-color: #1E2124;
+    border: 1px solid #40494E;
+    border-radius: 3px;
+}
+
+.dropdown-name{
+    display: flex;
+    padding: 6%;
+    font-weight: bold;
+}
+
+.dropdown-name h1{
+    padding-left: 2%;
+}
+
+.dropdown-user-info{
+    padding-left: 8%;
+    font-weight: bold;
+    line-height: 1.2em;
+    border-bottom: 1px solid #40494E;
+}
+
+#dropdown-buying-power{
+    padding-bottom: 5%;
+}
+
+.personal-links{
+    padding-left: 8%;
+    line-height: 2.5em;
+} 
+.personal-links:hover{
+    background-color: #40494E;
+    cursor: pointer;
+} 
+
+.personal-links-inner{
+    display: flex;
+    align-items: center;
+} 
+
+.personal-links-inner i{
+    padding-right: 6%;
+} 
+
+#dropdown-last-link{
+    border-bottom: 2px solid #40494E;
 }

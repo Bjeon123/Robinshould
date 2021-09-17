@@ -1,9 +1,7 @@
 .portfolio{
-    margin-top: 30px;
-    border: 1px solid white;
-    width: 600px;
+    margin-top: 15%;
+    width: 650px;
     height: 400px;
-    margin-left: 10%;
 }
 
 .portfolio h1{
@@ -11,4 +9,18 @@
     font-size: 2em;
     font-family: Arial;
     font-weight: 200;
+}
+
+.portfolio button{
+    background-color: black;
+    padding: 0;
+    margin-right: 1.5%;
+    padding-bottom: 6px;
+    border: none;
+    color: white;
+}
+
+.portfolio .activated{
+    color: #EE4E34;
+    border-bottom: 2px solid #EE4E34;
 }

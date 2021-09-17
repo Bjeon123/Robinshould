@@ -1,8 +1,8 @@
 .signup-page{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin-left: 15%;
+    padding-top: 1%;
+    margin-left: 10%;
 }
 
 .signup-page img{
@@ -20,7 +20,7 @@
 
 .signup-input{
     margin-bottom: 15px;
-    width: 615px;
+    width: 590px;
 }
 
 .name-form{
@@ -29,7 +29,7 @@
 
 .name-form input{
     margin-right: 10px;
-    width: 300px;
+    width: 287px;
 }
 
 .signup-page button{
@@ -43,4 +43,30 @@
 
 .signup-page button:hover{
     background-color: green;
+}
+
+.signup-page-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.signup-page-description{
+    float: right;
+    padding-top: 10%;
+    padding-left: 5%;
+    padding-right: 15%;
+    font-family: avenir;
+    background-color: rgb(245, 245, 245);
+    width: 20%;
+    height: 650px;
+}
+.signup-page-description h1{
+    font-size: 1em;
+    font-weight: bold;
+    padding-bottom: 3%;
+}
+
+.signup-page-description p{
+    padding-bottom: 15%;
+    line-height: 1.4em;
 }

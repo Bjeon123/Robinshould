@@ -1,5 +1,10 @@
-.stocks-page{
+.outer-container{
     background-color: black;
+}
+.stocks-page{
+    padding-top: 80px;
+    display: flex;
+    margin-left: 12%;
 }
 
 .stocks-page h1{
@@ -26,8 +31,8 @@
     display: flex;
     width: 650px;
     flex-direction: column;
-    margin-left: 12%;
     margin-top: 3%;
+    margin-right: 5%;
 }
 
 .stocks-page-chart{
@@ -37,23 +42,241 @@
 .stocks-page-chart button{
     margin-right: 3%;
     background-color: black;
+    font-size: .75em;
+    padding: 0px;
     border: none;
     color: white;
+    padding-bottom: 10px;
 }
 
 .stocks-page-chart button:hover{
-    color: red;
+    color: #EE4E34;
+}
+
+
+.stocks-page-chart .activated{
+    color: #EE4E34;
+    border-bottom: 2px solid #EE4E34;;
 }
 
 .stock-page-description{
     margin-bottom: 6%;
 }
 .stock-page-section{
-    border-top: 1px solid gray;
+    border-top: 1px solid #40494E;
     padding-top: 3%;;
 }
 
-.hr{
+.transaction-form{
+    margin-top: 12%;
+    margin-left: 10%;
+    width: 260px;
+    background-color: #1E2124;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-family: avenir;
+    border: .5px solid #40494E;
+    border-radius: 3px;
+}
+
+
+.transaction-form input{
+    width: 30%;
+    padding-left: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 3px;
+    background-color: #30363A;
+    border: .5px solid #40494E;
+    color: white;
+}
+.transaction-form input:hover{
+    background-color: #1E2124;
+}
+
+.transaction-form select{
+    padding-left: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 55%;
+    background-color: #1E2124;
+    border-radius: 3px;
+    color: white;
+}
+
+.transaction-form select:hover{
+    cursor: pointer;
+}
+
+
+.transaction-form h1{
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 8px;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.tf-input-pair{
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.tf-input-pair.pt2{
+    margin-top: 20px;
+}
+
+#tf-footer{
     width: 100%;
-    border-bottom: 1px solid gray;
+    text-align: center;
+    font-size: .9em;
+    border-top: 1px solid #40494E;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #EE4E34;;
+}
+
+#mkt-price{
+    border-bottom: 1px solid #40494E;
+    padding-bottom: 13px;
+} 
+
+.transaction-form label{
+    font-size: .9em;
+}
+
+.transaction-form h6{
+    display: flex;
+    float: right;
+}
+
+.transaction-button{
+    width: 80%;
+    margin: 10% auto;
+    margin-top: 45px;
+    margin-bottom: 35px;
+    font-size: .8em;
+    font-family: avenir;
+    font-weight: bold;
+    background-color: #EE4E34;;
+    border: none;
+    border-radius: 3px;
+    padding: 5%;
+}
+.transaction-button:hover{
+    background-color: rgb(224, 4, 4);
+}
+
+.transaction-options{
+    display: flex;
+    border-bottom:1px solid #40494E;
+}
+
+.stocks-page-right{
+    position: fixed;
+    right: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.watchlist-toggle{
+    margin-top: 30px;
+    margin-left: 15%;
+    color: white;
+    background-color: black;
+    border: 1px solid #EE4E34;;
+    border-radius: 3px;
+    width: 200px;
+    height: 40px;
+}
+
+.watchlist-toggle:hover{
+    background-color: rgb(138, 81, 81);
+}
+
+.watchlist-card{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 3px;
+}
+
+.watchlist-card h1{
+    margin-top: 15%;
+    margin-bottom: 15%;
+    font-size: .8em;
+    font-weight: bold;;
+}
+
+.watchlist-card p{
+    margin-top: 15%;
+    margin-bottom: 15%;
+    font-size: .8em;
+}
+.watchlist-card:hover{
+    background-color: rgb(43, 45, 48);
+}
+
+.watchlist-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 7%;
+    padding-right: 11%;
+}
+
+.watchlists-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.watchlists-title h3{
+    border-bottom: none;
+}
+
+#wl-stock-title-container{
+    border-bottom: 1px solid #40494E;
+}
+
+#wl-stock-title{
+    margin-left: 5.5%;
+}
+#wl-list-title-container{
+    border-bottom: 1px solid #40494E;
+    border-top: 1px solid #40494E;
+}
+
+#wl-list-title{
+    margin-left: 6.3%;
+}
+
+.card-pp{
+    text-align: center;
+}
+.add_list_btn{
+    font-size: 1.5em;
+    background-color: #1E2124;
+    border: none;
+    color: white;
+    margin-right: 9%;
+}
+
+.list-card:hover{
+    background-color: rgb(37, 39, 41);
+}
+
+.lg-container{
+    border-bottom: 1px solid #40494E;
+    margin-bottom: 10px;
+    padding: 14px;
+}
+
+i:hover{
+    cursor: pointer;
 }

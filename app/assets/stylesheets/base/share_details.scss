@@ -1,0 +1,90 @@
+.share-detail-container{
+    display: flex;
+    justify-content: space-between;
+    font-family: avenir;
+    margin-bottom: 7%;
+}
+.share-detail-container h1{
+    font-size: 1.5em;
+    padding-bottom: 5%;
+}
+
+.share-detail-container h3{
+    font-size: 1em;
+    padding-bottom: 2%;
+    color: white;
+}
+.share-detail-container p{
+    font-size: 1em;
+    padding-bottom: 2%;
+}
+
+.sd-element .right{
+    float: right;
+}
+.sd-element{
+    margin: 3%;
+    padding: 5%;
+    border: 1px solid gray;
+    border-radius: 4px;
+    width: 40%;
+}
+
+#active-transaction{
+    color: #EE4E34;
+}
+
+#inactive-transaction:hover{
+    cursor: pointer;
+}
+#active-transaction:hover{
+    cursor: pointer;
+}
+
+.watchlist-container{
+    position: fixed;
+    top: 10%;
+    right: 10%;
+    font-family: avenir;
+    border: 1px solid #40494E;
+    border-radius: 4px;
+    width: 270px;
+    height: 80%;
+    background-color: #1E2124;
+}
+
+.watchlist-container h3{
+    padding: 5%;
+}
+
+.watchlist-container hr{
+    width: 1px;
+}
+
+.sd-todays-return{
+    padding-bottom: 2%;
+    border-bottom: 1px solid #40494E;
+}
+.sd-total-ret{
+    margin-top:6%;
+}
+
+.sd-shares{
+    padding-bottom: 2%;
+    border-bottom: 1px solid #40494E;
+}
+
+.sp-comp-info{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sp-comp-info p{
+    margin-bottom: 5%;
+    font-size: .9em;
+}
+
+.sp-comp-info-head{
+    font-weight: bold;
+}

@@ -1,0 +1,101 @@
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.modal-content{
+    width: 30%;
+    height: 50%;
+    background-color: #1E2124;
+    border-radius: 4px;
+}
+
+.wlform-outer{
+    width: 20%;
+    height: 20%;
+    background-color: #1E2124;
+    border-radius: 4px;
+}
+
+.wlform{
+    font-family: avenir;
+    padding-top: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.wlform input{
+    border: 1px solid #40494E;
+    border-radius: 3px;
+    background-color: #1E2124;
+    margin: 20px;
+    width: 80px;
+    height: 25px;
+}
+
+.wlform button{
+    background-color: #EE4E34;;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-left: 15%;
+}
+
+.wlform button:hover{
+    background-color: rgb(231, 99, 79);
+}
+
+.close-modal{
+    float: right;
+    position: relative;
+    margin: 2%;
+    background-color: #1E2124;
+    border: none;
+    color: white;
+    font-size: 1.3em;
+}
+
+.watchlist-form{
+    display: flex;
+    flex-direction: column;
+    font-family: avenir;
+}
+.watchlist-form h1{
+    margin: 40px;
+    font-weight: bold;
+}
+
+.watchlist-form-btn{
+    margin-top: 4%;
+    margin-left: 27%;
+    background-color: red;
+    color: white;
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+}
+.watchlist-form-row{
+    padding-left: 20%;
+    padding-bottom: 4%;
+    display: flex;
+    align-items: center;
+}
+
+.watchlist-form-row i{
+    margin-right: 4%;
+}

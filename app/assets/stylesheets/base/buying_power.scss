@@ -1,0 +1,79 @@
+.buying-power{
+    margin-top: 6%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 3%;
+    padding-right: 3%;
+    border-width: 650px;
+    border-top: 1px solid #40494E;
+    border-bottom: 1px solid #40494E;
+    border-radius: 5px;
+    line-height: 3em;
+}
+
+.buying-power-title{
+    display: flex;
+    justify-content: space-between;
+}
+
+.buying-power-detailed{
+    background-color: #1E2124;
+    display: flex;
+    flex-direction: column;
+    margin-top: 6%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 3%;
+    padding-right: 3%;
+    border-width: 650px;
+    justify-content: space-between;
+    border-top: 1px solid #40494E;
+    border-bottom: 1px solid #40494E;
+    border-radius: 5px;
+    line-height: 3em;
+}
+
+.buying-power-detailed h1{
+    font-family: avenir;
+    font-weight: bold;
+}
+
+.buying-power-detailed h2{
+    font-family: avenir;
+
+}
+
+
+.dashboard-left{
+    display: block;
+    width: 700px;
+}
+
+.buying-power h1{
+    font-family: avenir;
+    font-weight: bold;
+}
+
+.buying-power:hover{
+    background-color: #1E2124;
+    border-color: black;
+    cursor: pointer;
+}
+
+.add_fund_button{
+    width: 300px;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    background-color: #EE4E34;;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-left: 25%;
+}
+
+.add_fund_button:hover{
+    background-color: rgb(231, 99, 79);
+}
+

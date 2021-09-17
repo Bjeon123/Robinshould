@@ -1,18 +1,23 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Stock from './stock'
-import { fetchStockWeekData, fetchStockMonthData, fetchStock3MonthData, fetchStockYearData,fetchStock5YearData,fetchStockStats} from '../../util/stock_api_util'
-
+import { getCurrentUser, editCurrentUser } from '../../actions/users_actions'
+import { fetchStockId,fetchintradayData,fetchStockWeekData, fetchStockMonthData, fetchStock3MonthData, fetchStockYearData,fetchStock5YearData,fetchStockStats} from '../../util/stock_api_util'
+import { createHolding,updateHolding,deleteHolding} from '../../actions/holding_actions'
+import {fetchWatchlists} from '../../actions/watchlist_actions'
+import {logout} from '../../actions/session_actions'
 
 class StockContainer extends React.Component{
     constructor(props){
         super(props)
         this.state={
+            stockId: null,
             stats: null,
             timeframe: null,
             data: null,
             fetchMethods: null
         }
+        fetchStockId(this.props.stock).then((stockId) => this.setState({stockId: stockId}))
         this.changeData=this.changeData.bind(this)
     }
 
@@ -20,7 +25,10 @@ class StockContainer extends React.Component{
         this.setState({ timeframe: timeframe })
         const stock = this.props.stock
         fetchStockStats(stock).then((stats) => this.setState({ stats: stats }))
-        if (timeframe === "1W" || this.state.timeframe === null){
+        if (timeframe === "1D" || this.state.timeframe === null){
+            fetchintradayData(stock).then((data) => this.setState({ data: data }))
+        }
+        else if (timeframe === "1W"){
             fetchStockWeekData(stock).then((data) => this.setState({ data: data }))
         }
         else if (timeframe === "1M") {
@@ -37,26 +45,18 @@ class StockContainer extends React.Component{
         }
     }
 
-
     componentDidMount(){
-        console.log('hit')
+        this.props.getCurrentUser(window.currentUser.id)
         const stock = this.props.stock
-        fetchStockStats(stock).then((stats) =>this.setState({stats: stats}))
-        if (this.state.timeframe === "1W" || this.state.timeframe === null){
-            fetchStockWeekData(stock).then((data) => this.setState({ data: data }))
-        }
-        else if (this.state.timeframe === "1M"){
-            fetchStockMonthData(stock).then((data) => this.setState({ data: data }))
-        }
-        else if (this.state.timeframe === "3M"){
-            fetchStock3MonthData(stock).then((data) => this.setState({ data: data }))
-        }
-        else if (this.state.timeframe === "1Y"){
-            fetchStockYearData(stock).then((data) => this.setState({ data: data }))
-        }
-        else if (this.state.timeframe === "5Y"){
-            fetchStockYearData(stock).then((data) => this.setState({ data: data }))
-        }
+        this.props.fetchWatchlists().then(
+            ()=>{
+                fetchStockStats(stock).then((stats) => this.setState({ stats: stats })).then(
+                    ()=>{
+                        fetchintradayData(stock).then((data) => this.setState({ data: data }))
+                    }
+                )
+            }
+        )
     }
 
     render(){
@@ -64,7 +64,21 @@ class StockContainer extends React.Component{
             return null;
         }
         return(
-            <Stock timeframe={this.state.timeframe} stock ={this.props.stock} data={this.state.data} compInfo={this.state.stats} changeData={this.changeData}/>
+            <Stock 
+            logout = {this.props.logout}
+            watchlists= {this.props.watchlists}
+            fetchWatchlists={this.props.fetchWatchlists}
+            createHolding={this.props.createHolding} 
+            updateHolding={this.props.updateHolding}
+            deleteHolding={this.props.deleteHolding}
+            editCurrentUser={this.props.editCurrentUser}
+            timeframe={this.state.timeframe || "1D"} 
+            stockId={this.state.stockId} 
+            currentUser={this.props.currentUser} 
+            stock ={this.props.stock} 
+            data={this.state.data} 
+            compInfo={this.state.stats} 
+            changeData={this.changeData}/>
         )
     }
 }
@@ -72,17 +86,28 @@ class StockContainer extends React.Component{
 const mSTP = (state,ownProps) =>(
     {
         stock: ownProps.match.params.ticker,
+        sessions: state.sessions,
+        currentUser: state.user,
+        watchlists: state.watchlists
     }
 )
 
 const mDTP = dispatch =>(
     {
+        fetchStockId: (ticker) => dispatch(fetchStockId(ticker)),
         fetchStockWeekData: (stock) => dispatch(fetchStockWeekData(stock)),
         fetchStockStats: (stock) => dispatch(fetchStockStats(stock)),
         fetchStockMonthData: (stock) => dispatch(fetchStockMonthData(stock)),
         fetchStock3MonthData: (stock) => dispatch(fetchStock3MonthData(stock)),
         fetchStockYearData: (stock) => dispatch(fetchStockYearData(stock)),
-        fetchStock5YearData: (stock) => dispatch(fetchStock5YearData(stock))
+        fetchStock5YearData: (stock) => dispatch(fetchStock5YearData(stock)),
+        getCurrentUser: (userId) => dispatch(getCurrentUser(userId)),
+        createHolding: (holding) =>dispatch(createHolding(holding)),
+        updateHolding: (holding) => dispatch(updateHolding(holding)),
+        deleteHolding: (holding) => dispatch(deleteHolding(holding)),
+        editCurrentUser: (user) => dispatch(editCurrentUser(user)),
+        fetchWatchlists: ()=> dispatch(fetchWatchlists()),
+        logout: ()=> dispatch(logout())
     }
 )
 

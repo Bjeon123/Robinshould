@@ -3,6 +3,18 @@ class User < ApplicationRecord
     validates :email, presence: true, uniqueness: true
     validates :session_token, :password_digest, :first_name, :last_name, :address, :total_capital, presence: true
     
+    has_many :holdings,
+        foreign_key: :user_id,
+        class_name: :Holding
+
+    has_many :stocks,
+        through: :holdings,
+        source: :stock
+
+    has_many :watchlists,
+        foreign_key: :user_id,
+        class_name: :Watchlist
+
     attr_reader :password
     
     after_initialize :ensure_session_token

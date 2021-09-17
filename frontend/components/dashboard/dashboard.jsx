@@ -1,6 +1,8 @@
 import React from 'react';
 import DashNav from './dashboard_nav'
-import Porfolio from './portfolio'
+import Porfolio from './portfolio_container'
+import Watchlists from './watchlists';
+import BuyingPower from './buying_power';
 
 class DashBoard extends React.Component{
     constructor(props){
@@ -15,9 +17,15 @@ class DashBoard extends React.Component{
 
     render(){
         return (
-            <div className="dashboard">
-                <DashNav></DashNav>
-                <button onClick={this.logout}>Logout</button>
+            <div className= "dashboard-container">
+                <DashNav user={this.props.user} logout={this.props.logout}/>
+                <div className="dashboard">
+                    <div className="dashboard-left">
+                        <Porfolio user={this.props.user} holdings={this.props.user.holdings} />
+                        <BuyingPower/>
+                    </div>
+                    <Watchlists/>
+                </div>
             </div>
         )
     }
