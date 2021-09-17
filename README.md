@@ -1,5 +1,10 @@
 # README
 
+## RobinShould
+### Description
+-----------------------------
+RobinShould is a clone of a website called Robinhood, which allows you to buy and sell stocks. RobinHood's website has a sleek and stylish design which has made it very popular amongst younger generations. RobinShould allows people to see stock data for all stocks that are 
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
