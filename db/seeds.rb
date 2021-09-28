@@ -13,10 +13,11 @@ Holding.delete_all
 Watchlist.delete_all
 WatchlistJoin.delete_all
 
-User.create!(email: "demo@demo.com", first_name: "demo", last_name: "user", password: '123456', address: "demo st", total_capital:10000.50)
+demoUser = User.create!(email: "demo@demo.com", first_name: "demo", last_name: "user", password: '123456', address: "demo st", total_capital:10000.50)
 
 CSV.foreach(("app/assets/stock_info/stockTickerAndName.csv"), headers: true, col_sep: ",") do |row|
     Stock.create!(ticker: row[0],company_name: row[1])
 end 
+
 
 

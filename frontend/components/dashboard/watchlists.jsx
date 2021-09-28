@@ -12,14 +12,17 @@ class Watchlists extends React.Component{
         this.state={
             currentUser: window.currentUser,
             showModal: false,
-            prevsize: null
+            prevsize: null,
+            watchlists: null
         }
         this.closeModal=this.closeModal.bind(this)
         this.handleClick=this.handleClick.bind(this)
     }
 
     componentDidMount(){
-        this.props.fetchWatchlists()
+        this.props.fetchWatchlists().then(
+           (watchlists) => this.setState({watchlists: watchlists})
+        )
     }
 
     handleClick(e){
@@ -31,9 +34,10 @@ class Watchlists extends React.Component{
     }
 
     render(){
-        if (Object.keys(this.props.watchlists).length === 0 || Object.keys(this.props.user).length==0){            
+        if (this.state.watchlists=== null || Object.keys(this.props.user).length==0){            
             return null;
         }
+        console.log(this.state)
         const watchlistForm = <WLForm createWatchList={this.props.createNewWatchlist} closeModal={this.closeModal} user={this.props.user} />
         const { holdings } = this.props.user;
         const watchlists = this.props.watchlists;

@@ -12,6 +12,7 @@ class Stock extends React.Component{
         this.state={
             showModal: this.props.showModal
         }
+        console.log(this.props)
         this.closeModal=this.closeModal.bind(this)
     }
 

@@ -3,7 +3,7 @@ import LineGraph from '../charts/line_graph'
 import {numToMoney} from '../../util/numbers_api.util'
 
 const Portfolio=(props)=>{
-    const dataFormatType = props.data['chart'] ? 'chart' : 'intraday-prices'
+    const dataFormatType = props.data['chart'] !== undefined ? 'chart' : 'intraday-prices'
     let dataLastIdx = props.data[dataFormatType].length - 1;
     let refLine = props.data[dataFormatType][0]['close'].toFixed(2).toString();
     let currentPrice = props.data[dataFormatType][dataLastIdx]['close'].toFixed(2);
