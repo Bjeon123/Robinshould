@@ -2,6 +2,7 @@ import React from 'react'
 import WatchListCard from './watchlistCard.jsx'
 import Modal from '../modal/modal'
 import WLForm from '../modal/wl_form'
+import Watchlist from './watchlist'
 import { fetchWatchlists, createNewWatchlist, deleteWatchlist } from '../../actions/watchlist_actions'
 import { getCurrentUser } from '../../actions/users_actions'
 import {connect} from 'react-redux'
@@ -46,21 +47,8 @@ class Watchlists extends React.Component{
         )
         const watchlistsArr = Object.values(watchlists)
 
-        const watchlistsElements = watchlistsArr.map((watchlist) => {
-            const watchListCards = watchlist.stocks.map((stock, index) => {
-                return <WatchListCard key={`${stock.ticker}${index}`} stock={stock}/>
-            })
-            return(
-                <div>
-                    <div className="watchlist-title">
-                        <h3>{watchlist.name}</h3>
-                        <i id={watchlist.id} onClick={this.handleClick} className="far fa-trash-alt"></i>
-                    </div>
-                    <ul>
-                        {watchListCards}
-                    </ul>
-                </div>
-            )
+        const watchlistsElements = watchlistsArr.map((watchlist,index) => {
+            return <Watchlist watchlist={watchlist} key={`${index}`} handleClick={this.handleClick}/>
         })
 
         return(
