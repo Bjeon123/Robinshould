@@ -23,6 +23,7 @@ class DashBoard extends React.Component{
                     <div className="dashboard-left">
                         <Porfolio user={this.props.user} holdings={this.props.user.holdings} />
                         <BuyingPower/>
+                        
                     </div>
                     <Watchlists/>
                 </div>

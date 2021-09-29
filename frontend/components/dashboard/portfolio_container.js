@@ -73,6 +73,7 @@ class PortfolioContainer extends React.Component {
     }
 
     formatData(data,tickerArr){
+        console.log(data)
         const dataFormatType = data[tickerArr[0]]['chart'] ? 'chart' : 'intraday-prices' 
         let longestDatasetTicker = ""
         let maxDataSet = 0;
@@ -121,6 +122,7 @@ class PortfolioContainer extends React.Component {
     }
 
     render() {
+
         if(this.state.data === null){
             return null
         }
