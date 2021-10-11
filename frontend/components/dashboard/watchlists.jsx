@@ -13,11 +13,14 @@ class Watchlists extends React.Component{
         this.state={
             currentUser: window.currentUser,
             showModal: false,
+            addListForm: false,
+            newWLName: "",
             prevsize: null,
             watchlists: null
         }
-        this.closeModal=this.closeModal.bind(this)
-        this.handleClick=this.handleClick.bind(this)
+        this.handleClick = this.handleClick.bind(this)
+        this.cancelNewWL = this.cancelNewWL.bind(this)
+        this.handleNewWL = this.handleNewWL.bind(this)
     }
 
     componentDidMount(){
@@ -26,19 +29,29 @@ class Watchlists extends React.Component{
         )
     }
 
+    handleNewWL(){
+        const watchlist ={
+            name: this.state.newWLName,
+            user_id: this.props.user.id
+        }
+        this.props.createNewWatchlist(watchlist).then(
+            this.setState({addListForm: false, newWLName:""})
+        )
+    }
+
     handleClick(e){
         this.props.deleteWatchlist(parseInt(e.target.id))
     }
 
-    closeModal(){
-        this.setState({showModal: false})
+    cancelNewWL(){
+        this.setState({addListForm: false, newWLName:""})
     }
 
     render(){
+        console.log(this.state)
         if (this.state.watchlists=== null || Object.keys(this.props.user).length==0){            
             return null;
         }
-        console.log(this.state)
         const watchlistForm = <WLForm createWatchList={this.props.createNewWatchlist} closeModal={this.closeModal} user={this.props.user} />
         const { holdings } = this.props.user;
         const watchlists = this.props.watchlists;
@@ -46,22 +59,28 @@ class Watchlists extends React.Component{
             (holding,index) => <WatchListCard key={`${holding.ticker_id}${index}`} holding = {holding}/>
         )
         const watchlistsArr = Object.values(watchlists)
-
+        const newWLForm = 
+        <div className="new-WL-form">
+            <input onChange= {(e)=>this.setState({newWLName: e.target.value})} type="text" placeholder="List Name" value={this.state.newWLName}/>
+            <div>
+                <button onClick={this.cancelNewWL}>Cancel</button>
+                <button onClick={this.handleNewWL}>Create List</button>
+            </div>
+        </div>
         const watchlistsElements = watchlistsArr.map((watchlist,index) => {
             return <Watchlist watchlist={watchlist} key={`${index}`} handleClick={this.handleClick}/>
         })
-
         return(
             <div className="watchlist-container">
-                <Modal close={this.closeModal} className="wl-modal" comp={"wlform"} show={this.state.showModal} component={watchlistForm} />
                 <div id="wl-stock-title-container">
                     <h3 id="wl-stock-title">Stocks</h3>
                 </div>
                 {holdingElements}
                 <div id="wl-list-title-container" className="watchlists-title">
                     <h3 id="wl-list-title">Lists</h3>
-                    <button className="add_list_btn" onClick={() => { this.setState({ showModal: true }) }}>+</button>
+                    <button className="add_list_btn" onClick={() => { this.setState({ addListForm: true }) }}>+</button>
                 </div>
+                {this.state.addListForm ? newWLForm : null }
                 {watchlistsElements}
             </div>
         )

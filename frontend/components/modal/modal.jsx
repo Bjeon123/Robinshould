@@ -19,9 +19,6 @@ class Modal extends React.Component{
         if (comp === "watchlist-form"){
             outerClass = "modal-content"
         }
-        else if (comp === "wlform"){
-            outerClass = "wlform-outer"
-        }
         return(
             <div className="modal" style={{ color: "white" }}>
                 <div className={outerClass}>
