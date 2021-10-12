@@ -11,14 +11,16 @@ class StockContainer extends React.Component{
     constructor(props){
         super(props)
         this.state={
+            stock: this.props.stock,
             stockId: null,
             stats: null,
             timeframe: null,
             data: null,
             fetchMethods: null
         }
-        fetchStockId(this.props.stock).then((stockId) => this.setState({stockId: stockId}))
         this.changeData=this.changeData.bind(this)
+        this.updateComponent = this.updateComponent.bind(this)
+        this.props.getCurrentUser(window.currentUser.id)
     }
 
     changeData(timeframe){
@@ -45,14 +47,35 @@ class StockContainer extends React.Component{
         }
     }
 
+    updateComponent(){
+        this.setState({stock: this.props.stock},()=>{
+            fetchStockId(this.props.stock).then((stockId) => this.setState({stockId: stockId})).then(
+                ()=>{
+                    this.props.fetchWatchlists().then(
+                        ()=>{
+                            fetchStockStats(this.props.stock).then((stats) => this.setState({ stats: stats })).then(
+                                ()=>{
+                                    fetchintradayData(this.props.stock).then((data) => this.setState({ data: data }))
+                                }
+                            )
+                        }
+                    )
+                }
+            )
+        })
+    }
+
     componentDidMount(){
         this.props.getCurrentUser(window.currentUser.id)
-        const stock = this.props.stock
-        this.props.fetchWatchlists().then(
+        fetchStockId(this.props.stock).then((stockId) => this.setState({stockId: stockId})).then(
             ()=>{
-                fetchStockStats(stock).then((stats) => this.setState({ stats: stats })).then(
+                this.props.fetchWatchlists().then(
                     ()=>{
-                        fetchintradayData(stock).then((data) => this.setState({ data: data }))
+                        fetchStockStats(this.props.stock).then((stats) => this.setState({ stats: stats })).then(
+                            ()=>{
+                                fetchintradayData(this.props.stock).then((data) => this.setState({ data: data }))
+                            }
+                        )
                     }
                 )
             }
@@ -62,6 +85,9 @@ class StockContainer extends React.Component{
     render(){
         if(this.state.data===null){
             return null;
+        }
+        else if(this.state.stock !== this.props.stock){
+            this.updateComponent()
         }
         return(
             <Stock 

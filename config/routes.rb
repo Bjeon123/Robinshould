@@ -9,7 +9,8 @@ Rails.application.routes.draw do
     resources :watchlists, only:[:index,:create,:destroy,:update]
     resources :watchlist_joins, only:[:create,:destroy]
     resources :holdings, only:[:index, :create,:destroy,:update]
-    resources :stocks, only: [:show]
+    get "stocks/:id", to: "stocks#show"
+    get "search/stocks/:input", to: "stocks#search"
     resource :session, only: [:create, :destroy]
   end
 

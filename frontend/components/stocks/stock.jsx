@@ -12,7 +12,6 @@ class Stock extends React.Component{
         this.state={
             showModal: this.props.showModal
         }
-        console.log(this.props)
         this.closeModal=this.closeModal.bind(this)
     }
 
@@ -43,6 +42,7 @@ class Stock extends React.Component{
             numShares = currentShares.shares_bought
         }
         const sharesComponent = currentShares ? <ShareDetails shares={currentShares} currentPrice={currentPrice} openPrice={parseFloat(refLine)}></ShareDetails> : null;
+        console.log(this.props)
         return(
             <div className="outer-container">
                 <DashNav user={this.props.currentUser} logout={this.props.logout}/>
