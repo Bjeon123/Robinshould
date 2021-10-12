@@ -10,7 +10,7 @@ class Search extends React.Component{
             stocks: null
         }
         this.getResults=this.getResults.bind(this)
-        this.handleLinkClick=this.handleLinkClick.bind(this)
+        this.handleCloseResults=this.handleCloseResults.bind(this)
     }
 
 
@@ -29,18 +29,24 @@ class Search extends React.Component{
         )
     }
 
-    handleLinkClick(e){
+    handleCloseResults(){
         this.setState({stocks: null})
     }
 
     render(){
-        let searchResults= [<p>Stocks</p>]
-        console.log(this.state)
+        let searchResults= []
         if(this.state.stocks !== null){
+            if(this.state.stocks.length===0){
+                searchResults.push(<p>We were unable to find any results for your search.</p>)
+            }
+            else{
+                searchResults.push(<p>Stocks</p>)
+            }
+            window.addEventListener("click", this.handleCloseResults);
             for(let i=0;i<this.state.stocks.length;i++){
                 searchResults.push(
                     <Link to={`/stocks/${this.state.stocks[i].ticker}`}>
-                        <div id={this.state.stocks[i].ticker} onClick={(e)=>this.handleLinkClick(e)} className="stock-row">
+                        <div id={this.state.stocks[i].ticker} onClick={this.handleCloseResults} className="stock-row">
                             <p className="search-stock-ele">{this.state.stocks[i].ticker} </p>
                             <p>{this.state.stocks[i].company_name} </p>
                         </div>

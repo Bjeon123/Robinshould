@@ -8,6 +8,9 @@ class DashBoard extends React.Component{
     constructor(props){
         super(props)
         this.logout = this.logout.bind(this)
+        this.state={
+            windowClick: false
+        }
     }
 
     logout(){
@@ -15,15 +18,20 @@ class DashBoard extends React.Component{
         this.props.logout();
     }
 
+    handleWindowClick(e){
+        if(e.target.className !== "stock-row"){
+            this.setState({windowClick: true})
+        }
+    }
+
     render(){
         return (
-            <div className= "dashboard-container">
-                <DashNav user={this.props.user} logout={this.props.logout}/>
+            <div onClick={(e)=>this.handleWindowClick(e)} className= "dashboard-container">
+                <DashNav user={this.props.user} logout={this.props.logout} />
                 <div className="dashboard">
                     <div className="dashboard-left">
                         <Porfolio user={this.props.user} holdings={this.props.user.holdings} />
-                        <BuyingPower/>
-                        
+                        <BuyingPower/>     
                     </div>
                     <Watchlists/>
                 </div>

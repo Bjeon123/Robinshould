@@ -10,16 +10,24 @@ class DashNav extends React.Component{
             opened: false
         }
         this.handleClick = this.handleClick.bind(this)
+        this.handleWindowClick=this.handleWindowClick.bind(this)
     }
 
-    handleClick() {
+    handleClick(e){
+        e.stopPropagation();
         this.setState({ opened: !this.state.opened })
+    }
+
+    handleWindowClick(e){
+        this.setState({opened: false})
     }
 
     render(){
         const {user}=this.props
         let compTorender = null;
+        console.log(this.props)
         if (this.state.opened === true) {
+            window.addEventListener("click", this.handleWindowClick);
             compTorender =
             <div className="account-dropdown">
                 <div className="dropdown-name">
@@ -67,7 +75,7 @@ class DashNav extends React.Component{
                         </Link>
                         <button>Github</button>
                         <button>LinkedIn</button>
-                        <button onClick={this.handleClick}>Account</button>
+                        <button onClick={(e)=>this.handleClick(e)}>Account</button>
                     </div>
                 </nav>
                 {compTorender}
