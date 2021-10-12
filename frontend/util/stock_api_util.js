@@ -1,3 +1,4 @@
+import axios from 'axios';
 const baseUrl = "https://sandbox.iexapis.com";
 const token = 'pk_b33e3727ae694c11b9275f5ba6e0d253';
 
@@ -7,6 +8,14 @@ const token = 'pk_b33e3727ae694c11b9275f5ba6e0d253';
 //         url: `https://sandbox.iexapis.com/v1/stock/${ticker}/batch?&types=chart&range=5dm&token=Tpk_cdcb2f431e914c2cb121acf5f2136e2a`
 //     })
 // )
+
+
+export const searchStocks = (input) => (
+    $.ajax({
+        method: "GET",
+        url: `api/search/stocks/${input}`
+    })
+)
 
 export const fetchStockId= (ticker) => (
     $.ajax({

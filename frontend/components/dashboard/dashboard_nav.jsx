@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import { numToMoney } from '../../util/numbers_api.util'
+import Search from '../search/search'
 
 class DashNav extends React.Component{
     constructor(props) {
@@ -58,7 +59,7 @@ class DashNav extends React.Component{
                 <nav className="dash-nav">
                     <div className="dash-nav-left">
                         <img className="tree" src={window.tree} width="4%" />
-                        <input className="search" type="text" placeholder="Search" />
+                        <Search/>
                     </div>
                     <div className="dash-nav-right">
                         <Link to={"/dashboard"}>
