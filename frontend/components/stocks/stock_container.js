@@ -24,26 +24,25 @@ class StockContainer extends React.Component{
     }
 
     changeData(timeframe){
-        this.setState({ timeframe: timeframe })
         const stock = this.props.stock
         fetchStockStats(stock).then((stats) => this.setState({ stats: stats }))
         if (timeframe === "1D" || this.state.timeframe === null){
-            fetchintradayData(stock).then((data) => this.setState({ data: data }))
+            fetchintradayData(stock).then((data) => this.setState({ data: data,timeframe: timeframe }))
         }
         else if (timeframe === "1W"){
-            fetchStockWeekData(stock).then((data) => this.setState({ data: data }))
+            fetchStockWeekData(stock).then((data) => this.setState({ data: data ,timeframe: timeframe}))
         }
         else if (timeframe === "1M") {
-            fetchStockMonthData(stock).then((data) => this.setState({ data: data }))
+            fetchStockMonthData(stock).then((data) => this.setState({ data: data,timeframe: timeframe }))
         }
         else if (timeframe === "3M") {
-            fetchStock3MonthData(stock).then((data) => this.setState({ data: data }))
+            fetchStock3MonthData(stock).then((data) => this.setState({ data: data,timeframe: timeframe }))
         }
         else if (timeframe === "1Y") {
-            fetchStockYearData(stock).then((data) => this.setState({ data: data }))
+            fetchStockYearData(stock).then((data) => this.setState({ data: data ,timeframe: timeframe}))
         }
         else if (timeframe === "5Y") {
-            fetchStockYearData(stock).then((data) => this.setState({ data: data }))
+            fetchStockYearData(stock).then((data) => this.setState({ data: data,timeframe: timeframe }))
         }
     }
 
