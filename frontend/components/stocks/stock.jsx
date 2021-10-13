@@ -5,7 +5,8 @@ import StockTransactionForm from './stock_transaction_form'
 import ShareDetails from './share_details'
 import Modal from '../modal/modal'
 import WatchlistForm from '../modal/watchlist_form'
-import { formatSingleStockData } from '../../util/numbers_api.util'
+import { formatSingleStockData,numToMoney } from '../../util/numbers_api.util'
+
 
 class Stock extends React.Component{
     constructor(props){
@@ -50,7 +51,7 @@ class Stock extends React.Component{
                     <div className="stock-info">
                         <div className="stocks-page-chart">
                             <h1>{this.props.compInfo.company.companyName}</h1>
-                            {this.state.price ? <h1>{`${this.state.price}`}</h1> : <h1>{`${stockDataFormatted.currentPrice}`}</h1>}
+                            {this.state.price ? <h1>{`${numToMoney.format(this.state.price)}`}</h1> : <h1>{`${numToMoney.format(stockDataFormatted.currentPrice)}`}</h1>}
                             <div className="lg-container">
                                 <LineGraph setPrice={this.setPrice} max={stockDataFormatted.max} min={stockDataFormatted.min} data={stockDataFormatted.data} color={stockDataFormatted.color}></LineGraph>
                             </div>

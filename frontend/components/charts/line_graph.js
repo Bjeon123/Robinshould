@@ -8,10 +8,10 @@ const LineGraph = (props) => {
     return (
         <div>
             <LineChart className="chart" width={props.width || 650} height={props.height || 350} data={data}>
-                <Line type="linear" dataKey="price" dot={false} stroke={color} strokeWidth={props.lw || 1.5} isAnimationActive={false} activeDot={{ r: 8 }} />
+                <Line type="linear" dataKey="price" dot={false} stroke={color} strokeWidth={props.lw || 1.5}  activeDot={{ r: 8 }} />
                 <XAxis hide="true" dataKey='time' />
                 <YAxis hide="true" type="number" domain={[min, max]} />
-                {/* <Tooltip separator="-" position={{y: -30}} content={<CustomToolTip setPrice={setPrice}/>}/> */}
+                {setPrice ?  <Tooltip separator="-" position={{y: -20}} content={<CustomToolTip setPrice={setPrice}/>}/> : null}
                 <ReferenceLine
                     y={refLine}
                     stroke="#b3b5b5"
