@@ -40,6 +40,9 @@ export const formatSingleStockData = (data,timeframe) => {
             const date = datapoint['date'].split("-")
             newRow['time'] = monthNames[parseInt(date[1])-1] + " "+ date[2] +", " +date[0]
         }
+        if(i=== dataLastIdx){
+            currentPrice = newRow['price']
+        }
         formattedData.push(newRow)
     }
     let percentChange = ((formattedData[dataLastIdx]['price'] - formattedData[0]['price'])/formattedData[0]['price'])*100

@@ -13,10 +13,12 @@ class Stock extends React.Component{
         super(props)
         this.state={
             showModal: this.props.showModal,
-            price: ""
+            price: "",
+            showFullCompanyDescription: false,
         }
         this.closeModal=this.closeModal.bind(this)
         this.setPrice = this.setPrice.bind(this)
+        this.formatCompanyDescription = this.formatCompanyDescription.bind(this)
     }
 
     closeModal(){
@@ -26,6 +28,18 @@ class Stock extends React.Component{
     setPrice(price){
         if(price != this.state.price){
             this.setState({price})
+        }
+    }
+
+    formatCompanyDescription(text){
+        if(text.length < 330){
+            return text;
+        }
+        else if(this.state.showFullCompanyDescription === false){
+            return text.substring(0,330)
+        }
+        else{
+            return text;
         }
     }
 
@@ -67,9 +81,12 @@ class Stock extends React.Component{
                         </div>
                         <div className="stock-page-description">
                             <h2>About</h2>
-                            <p className="stock-page-section">{this.props.compInfo.company.description}</p>
+                            <div className="company-description">
+                                <p className="stock-page-section">{this.formatCompanyDescription(this.props.compInfo.company.description)}</p>
+                                {this.state.showFullCompanyDescription ? <p onClick={()=> this.setState({showFullCompanyDescription: false})}>Show Less</p> : <p onClick={()=> this.setState({showFullCompanyDescription: true}) }>Show More</p>}
+                            </div>
                             <div className="sp-comp-info">
-                                <div>
+                                <div >
                                     <p className="sp-comp-info-head">CEO</p>
                                     <p>{this.props.compInfo.company.CEO}</p>
                                 </div>
