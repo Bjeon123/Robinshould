@@ -1,7 +1,8 @@
 import React from 'react'
-import { fetchintradayData, fetchStockMonthData,fetchStockTicker} from '../../util/stock_api_util'
+import { fetchintradayData,fetchStockTicker} from '../../util/stock_api_util'
 import LineChart from '../charts/line_graph'
 import { Link } from 'react-router-dom';
+import { formatSingleStockData} from '../../util/numbers_api.util'
 
 
 
@@ -43,9 +44,8 @@ class WatchListCard extends React.Component{
         if(this.state.data===null){
             return null;
         }
-        const lastIdx = this.state.data['intraday-prices'].length-1
-        const color = this.state.data['intraday-prices'][0].close < this.state.data['intraday-prices'][lastIdx].close ? "#5AC131" : "red";
-        const percentChange = (((this.state.data['intraday-prices'][lastIdx].close - this.state.data['intraday-prices'][0].close) / this.state.data['intraday-prices'][0].close) * 100).toFixed(2);
+        const dataFormatted = formatSingleStockData(this.state.data);
+        // const percentChange = (((this.state.data['intraday-prices'][lastIdx].close - this.state.data['intraday-prices'][0].close) / this.state.data['intraday-prices'][0].close) * 100).toFixed(2);
         const info = this.state.type === "watchlist" ? 
             <div><h1>{this.state.ticker}</h1></div> :
             <div className="card-ticker-share">
@@ -56,10 +56,10 @@ class WatchListCard extends React.Component{
             <Link to={`/stocks/${this.state.ticker}`}>
                 <div className="watchlist-card">
                     {info}
-                    <LineChart dataType={'intraday-prices'} color={color} refLine={this.state.data['intraday-prices'][0]['close']} lw={.4} width={55} height={30} data={this.state.data} dataHasTime={false} />
+                    <LineChart min={dataFormatted.min} max ={dataFormatted.max} color={dataFormatted.color} data={dataFormatted.data}lw={.4} width={55} height={30}/>
                     <div className="card-pp">
-                        <p>${this.state.data['intraday-prices'][lastIdx].close.toFixed(2)}</p>
-                        <p style={{ color: color }}>{percentChange}%</p>
+                        <p>${dataFormatted.currentPrice}</p>
+                        <p style={{ color: dataFormatted.color }}>{dataFormatted.percentChange.toFixed(2)}%</p>
                     </div>
                 </div> 
             </Link>

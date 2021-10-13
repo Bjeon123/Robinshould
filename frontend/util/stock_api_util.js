@@ -55,7 +55,7 @@ export const fetchAllQuotes = (tickerArr) =>(
 export const fetchStockWeekData= (ticker) =>(
     $.ajax({
         method: "GET",
-        url: `https://sandbox.iexapis.com/v1/stock/${ticker}/batch?&types=chart&range=5dm&toke=Tpk_cdcb2f431e914c2cb121acf5f2136e2a`
+        url: `https://sandbox.iexapis.com/v1/stock/${ticker}/batch?&types=chart&range=5dm&token=Tpk_cdcb2f431e914c2cb121acf5f2136e2a`
     })
 )
 export const fetchStockMonthData= (ticker) =>(
