@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import Stock from './stock'
 import { getCurrentUser, editCurrentUser } from '../../actions/users_actions'
 import { fetchStockId,fetchintradayData,fetchStockWeekData, fetchStockMonthData, fetchStock3MonthData, fetchStockYearData,fetchStock5YearData,fetchStockStats} from '../../util/stock_api_util'
-import { createHolding,updateHolding,deleteHolding} from '../../actions/holding_actions'
+// import { createHolding,updateHolding,deleteHolding} from '../../actions/holding_actions'
 import {fetchWatchlists} from '../../actions/watchlist_actions'
 import {logout} from '../../actions/session_actions'
 
@@ -113,7 +113,7 @@ const mSTP = (state,ownProps) =>(
         stock: ownProps.match.params.ticker,
         sessions: state.sessions,
         currentUser: state.user,
-        watchlists: state.watchlists
+        watchlists: state.watchlists,
     }
 )
 
@@ -127,9 +127,9 @@ const mDTP = dispatch =>(
         fetchStockYearData: (stock) => dispatch(fetchStockYearData(stock)),
         fetchStock5YearData: (stock) => dispatch(fetchStock5YearData(stock)),
         getCurrentUser: (userId) => dispatch(getCurrentUser(userId)),
-        createHolding: (holding) =>dispatch(createHolding(holding)),
-        updateHolding: (holding) => dispatch(updateHolding(holding)),
-        deleteHolding: (holding) => dispatch(deleteHolding(holding)),
+        // createHolding: (holding) =>dispatch(createHolding(holding)),
+        // updateHolding: (holding) => dispatch(updateHolding(holding)),
+        // deleteHolding: (holding) => dispatch(deleteHolding(holding)),
         editCurrentUser: (user) => dispatch(editCurrentUser(user)),
         fetchWatchlists: ()=> dispatch(fetchWatchlists()),
         logout: ()=> dispatch(logout())

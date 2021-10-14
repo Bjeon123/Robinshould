@@ -5,7 +5,6 @@ import WatchlistItem from './watchlistCard'
 class Watchlist extends React.Component{
     constructor(props){
         super(props)
-        console.log(this.props)
         this.state={
             opened: false,
             chervonSymbol: "fas fa-chevron-up"

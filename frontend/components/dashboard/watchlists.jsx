@@ -48,7 +48,6 @@ class Watchlists extends React.Component{
     }
 
     render(){
-        console.log(this.state)
         if (this.state.watchlists=== null || Object.keys(this.props.user).length==0){            
             return null;
         }

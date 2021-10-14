@@ -25,7 +25,6 @@ class DashNav extends React.Component{
     render(){
         const {user}=this.props
         let compTorender = null;
-        console.log(this.props)
         if (this.state.opened === true) {
             window.addEventListener("click", this.handleWindowClick);
             compTorender =

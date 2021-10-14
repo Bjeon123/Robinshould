@@ -6,7 +6,7 @@ import LoginForm from './login_form'
 
 const mSTP = state => (
     {
-        errors: Object.values(state.errors)
+        errors: Object.values(state.errors.sessions)
     }
 )
 

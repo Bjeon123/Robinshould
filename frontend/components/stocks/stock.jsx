@@ -1,7 +1,7 @@
 import React from 'react'
 import LineGraph from '../charts/line_graph'
 import DashNav from '../dashboard/dashboard_nav'
-import StockTransactionForm from './stock_transaction_form'
+import StockTransactionForm from './stock_transaction_form_container'
 import ShareDetails from './share_details'
 import Modal from '../modal/modal'
 import WatchlistForm from '../modal/watchlist_form'
@@ -13,7 +13,7 @@ class Stock extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            showModal: this.props.showModal,
+            showModal: false,
             price: "",
             showFullCompanyDescription: false,
             news: null
@@ -137,14 +137,14 @@ class Stock extends React.Component{
                     <div className="stocks-page-right">
                         <StockTransactionForm
                             currentShares={currentShares}
-                            createHolding={this.props.createHolding}
-                            updateHolding={this.props.updateHolding}
-                            deleteHolding={this.props.deleteHolding}
-                            editCurrentUser={this.props.editCurrentUser}
+                            // createHolding={this.props.createHolding}
+                            // updateHolding={this.props.updateHolding}
+                            // deleteHolding={this.props.deleteHolding}
+                            // editCurrentUser={this.props.editCurrentUser}
                             ticker={this.props.stock}
                             stockId={this.props.stockId}
                             currentPrice={stockDataFormatted.currentPrice}
-                            currentUser={this.props.currentUser}
+                            // currentUser={this.props.currentUser}
                         />
                         <button onClick={() => { this.setState({showModal: true}) }} className="watchlist-toggle">Add to Lists</button>
                     </div>

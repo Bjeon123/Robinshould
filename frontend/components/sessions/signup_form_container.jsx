@@ -4,7 +4,7 @@ import SignUp from './signin_form'
 
 const mSTP = state => (
     {
-        errors: Object.values(state.errors)
+        errors: Object.values(state.errors.sessions)
     }
 )
 

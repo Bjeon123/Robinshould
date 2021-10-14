@@ -6,7 +6,9 @@ class Api::HoldingsController < ApplicationController
 
     def create
         @holding = Holding.new(holding_params)
-        if(@holding.save)
+        if(@holding.shares.to_i <=0)
+            render json: ["Please enter a valid number of shares. "]
+        elsif(@holding.save)
             render json: @holding
         else
              render json: @holding.errors.full_messages, status: 422

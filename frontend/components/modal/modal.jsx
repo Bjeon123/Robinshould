@@ -16,7 +16,7 @@ class Modal extends React.Component{
         }
         let outerClass;
         const {comp} = this.props;
-        if (comp === "watchlist-form"){
+        if (comp === "watchlist-form" || comp==="buying-power-form"){
             outerClass = "modal-content"
         }
         return(
