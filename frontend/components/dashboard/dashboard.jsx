@@ -3,6 +3,7 @@ import DashNav from './dashboard_nav'
 import Porfolio from './portfolio_container'
 import Watchlists from './watchlists';
 import BuyingPower from './buying_power';
+import News from './news'
 
 class DashBoard extends React.Component{
     constructor(props){
@@ -31,7 +32,8 @@ class DashBoard extends React.Component{
                 <div className="dashboard">
                     <div className="dashboard-left">
                         <Porfolio user={this.props.user} holdings={this.props.user.holdings} />
-                        <BuyingPower/>     
+                        <BuyingPower/>   
+                        <News/>
                     </div>
                     <Watchlists/>
                 </div>

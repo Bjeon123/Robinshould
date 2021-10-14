@@ -2,13 +2,18 @@ export const numToMoney = new Intl.NumberFormat('en-US',
     {
         style: 'currency',
         currency: 'USD',
-    });
+    }
+);
+
+export const formatPercent = (percent)=>{
+    let symbol = percent < 0 ? "-" : "+";
+    return `${symbol}${percent.toFixed(2)}%` 
+}
 
 export const formatSingleStockData = (data,timeframe) => {
     const datapoints = data['intraday-prices'] ? data['intraday-prices'] : data['chart']
     const dataLastIdx = datapoints.length - 1;
     let currentPrice = datapoints[dataLastIdx]['close'].toFixed(2);
-    let color = datapoints[1]['close'] < datapoints[dataLastIdx]['close'] ? "green" : "red";
     let dataHasTime = (timeframe === "3M" || timeframe === "1Y" || timeframe === "5Y") ? false : true;
     let max = Number.MIN_VALUE;
     let min = Number.MAX_VALUE;
@@ -46,6 +51,8 @@ export const formatSingleStockData = (data,timeframe) => {
         formattedData.push(newRow)
     }
     let percentChange = ((formattedData[dataLastIdx]['price'] - formattedData[0]['price'])/formattedData[0]['price'])*100
+    let cashChange = formattedData[dataLastIdx]['price'] - formattedData[0]['price']
+    let color = formattedData[0]['price'] < formattedData[dataLastIdx]['price'] ? "green" : "red";
     return (
         {
             min: min,
@@ -53,7 +60,8 @@ export const formatSingleStockData = (data,timeframe) => {
             data: formattedData,
             color: color,
             currentPrice: currentPrice,
-            percentChange: percentChange
+            percentChange: percentChange,
+            cashChange: cashChange
         }
     )
 };
@@ -66,18 +74,18 @@ export const formatPortfolio = (data,timeframe,holdings,capital) => {
     const monthNames = ["Jan", "Feb", "March", "April", "May", "June",
     "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
     for(let i =0; i < holdingsArr.length;i++){
-        let ticker = holdingsArr[0].ticker
+        let ticker = holdingsArr[i].ticker
         if(data[ticker][dataType].length > maxDataSetLen){
             maxDataSetLen = data[ticker][dataType].length
         }
     }
-    let formattedData = new Array(maxDataSetLen).fill(null).map(()=> ({price:capital}))
+    let formattedData = new Array(maxDataSetLen).fill(null).map(()=> ({price: capital}))
     let firstMaxLen = false;
     for(let i =0; i < holdingsArr.length;i++){
         const ticker = holdingsArr[i].ticker;
         const shares = holdingsArr[i].shares;
         const datapoints = data[ticker][dataType]
-        let lastNonZeroPrice = datapoints[0]['close'] || datapoints[1]['close']
+        let lastNonZeroPrice = datapoints[0]['close'] || datapoints[1]['close'] ||datapoints[3]['close'] 
         let j = maxDataSetLen - datapoints.length;
         let offset = maxDataSetLen - datapoints.length;
         while(j < maxDataSetLen){
@@ -99,7 +107,13 @@ export const formatPortfolio = (data,timeframe,holdings,capital) => {
                 else {
                     const date = datapoints[j-offset]['date'].split("-")
                     formattedData[j]['time'] = monthNames[parseInt(date[1])-1] + " "+ date[2] +", " + date[0]
-                    formattedData[j]['price'] += shares * datapoints[j-offset]['close']
+                    if(datapoints[j-offset]['close']){
+                        lastNonZeroPrice = datapoints[j-offset]['close'];
+                        formattedData[j]['price'] += shares * datapoints[j-offset]['close']
+                    }
+                    else{
+                        formattedData[j]['price'] += shares * lastNonZeroPrice
+                    }
                 }
                 j++
             }

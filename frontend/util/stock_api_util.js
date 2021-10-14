@@ -5,6 +5,7 @@ const token = 'pk_b33e3727ae694c11b9275f5ba6e0d253';
 // export const fetchStockIntradayData= (ticker) =>(
 //     $.ajax({
 //         method: "GET",
+//https://cloud.iexapis.com/
 //         url: `https://sandbox.iexapis.com/v1/stock/${ticker}/batch?&types=chart&range=5dm&token=Tpk_cdcb2f431e914c2cb121acf5f2136e2a`
 //     })
 // )
@@ -41,7 +42,7 @@ export const fetchStockTickers = (userId) => (
 export const fetchintradayData =(ticker) =>(
     $.ajax({
         method: "GET",
-        url: `https://sandbox.iexapis.com/v1/stock/${ticker}/batch?&types=intraday-prices&token=Tpk_cdcb2f431e914c2cb121acf5f2136e2a`
+        url: `https://sandbox.iexapis.com/v1/stock/${ticker}/batch?&types=intraday-prices,news&last=4&token=Tpk_cdcb2f431e914c2cb121acf5f2136e2a`
     })
 )
 
@@ -49,6 +50,13 @@ export const fetchAllQuotes = (tickerArr) =>(
     $.ajax({
         method: "GET",
         url: `https://sandbox.iexapis.com/v1/stock/market/batch?&types=price,intraday-prices,news&symbols=${tickerArr.join(',')}&token=Tpk_cdcb2f431e914c2cb121acf5f2136e2a`,
+    })
+)
+
+export const getNews = (tickerArr) =>(
+    $.ajax({
+        method: "GET",
+        url: `https://sandbox.iexapis.com/v1/stock/market/batch?&types=news&symbols=${tickerArr.join(',')}&last=1&token=Tpk_cdcb2f431e914c2cb121acf5f2136e2a`,
     })
 )
 

@@ -5,7 +5,8 @@ import StockTransactionForm from './stock_transaction_form'
 import ShareDetails from './share_details'
 import Modal from '../modal/modal'
 import WatchlistForm from '../modal/watchlist_form'
-import { formatSingleStockData,numToMoney } from '../../util/numbers_api.util'
+import { formatSingleStockData,numToMoney,formatPercent } from '../../util/numbers_api.util'
+import NewsElement from '../news/news_element'
 
 
 class Stock extends React.Component{
@@ -15,10 +16,16 @@ class Stock extends React.Component{
             showModal: this.props.showModal,
             price: "",
             showFullCompanyDescription: false,
+            news: null
         }
-        this.closeModal=this.closeModal.bind(this)
-        this.setPrice = this.setPrice.bind(this)
-        this.formatCompanyDescription = this.formatCompanyDescription.bind(this)
+        this.closeModal=this.closeModal.bind(this);
+        this.setPrice = this.setPrice.bind(this);
+        this.formatCompanyDescription = this.formatCompanyDescription.bind(this);
+        this.formatNews = this.formatNews.bind(this);
+    }
+
+    componentDidMount(){
+        this.setState({news: this.props.data['news']})
     }
 
     closeModal(){
@@ -43,6 +50,22 @@ class Stock extends React.Component{
         }
     }
 
+    formatNews(){
+        const {news} = this.state
+        let newsRenderArr=[];
+        for(let i=0; i<4; i++){
+            if(!news[i]){
+                break;
+            }
+            else{
+                newsRenderArr.push(
+                    <NewsElement newsData={news[i]}/>
+                )
+            }
+        }
+        return newsRenderArr
+    }
+
     render(){
         const stockDataFormatted = formatSingleStockData(this.props.data, this.props.timeframe)
         const watchlistForm = <WatchlistForm fetchWatchlists={this.props.fetchWatchlists} closeModal={this.closeModal} watchlists={this.props.watchlists} ticker={this.props.stock} stockId={this.props.stockId}/>
@@ -56,6 +79,7 @@ class Stock extends React.Component{
         if (currentShares) {
             numShares = currentShares.shares_bought
         }
+        const stockNews = this.state.news ? this.formatNews() : null;
         const sharesComponent = currentShares ? <ShareDetails shares={currentShares} currentPrice={stockDataFormatted.currentPrice} openPrice={stockDataFormatted.data[0]['price']}></ShareDetails> : null;
         return(
             <div className="outer-container">
@@ -66,6 +90,7 @@ class Stock extends React.Component{
                         <div className="stocks-page-chart">
                             <h1>{this.props.compInfo.company.companyName}</h1>
                             {this.state.price ? <h1>{`${numToMoney.format(this.state.price)}`}</h1> : <h1>{`${numToMoney.format(stockDataFormatted.currentPrice)}`}</h1>}
+                            <p>{`${numToMoney.format(stockDataFormatted.cashChange)} (${formatPercent(stockDataFormatted.percentChange)})`}</p>
                             <div className="lg-container">
                                 <LineGraph setPrice={this.setPrice} max={stockDataFormatted.max} min={stockDataFormatted.min} data={stockDataFormatted.data} color={stockDataFormatted.color}></LineGraph>
                             </div>
@@ -103,6 +128,10 @@ class Stock extends React.Component{
                                     <p>{this.props.compInfo.company.sector}</p>
                                 </div>
                             </div>
+                        </div>
+                        <h2>News</h2>
+                        <div className="news-container">
+                            {stockNews}
                         </div>
                     </div>
                     <div className="stocks-page-right">
