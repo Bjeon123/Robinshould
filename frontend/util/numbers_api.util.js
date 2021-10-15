@@ -1,3 +1,4 @@
+
 export const numToMoney = new Intl.NumberFormat('en-US', 
     {
         style: 'currency',
@@ -8,6 +9,18 @@ export const numToMoney = new Intl.NumberFormat('en-US',
 export const formatPercent = (percent)=>{
     let symbol = percent < 0 ? "-" : "+";
     return `${symbol}${percent.toFixed(2)}%` 
+}
+
+export const percentChange = (firstPrice, lastPrice)=>{
+    const percent = ((lastPrice - firstPrice)*100) / firstPrice 
+    let symbol = percent > 0 ? "+" : "";
+    return `${symbol}${percent.toFixed(2)}%` 
+}
+
+export const cashChange = (firstPrice, lastPrice)=>{
+    const changed = (lastPrice - firstPrice)
+    let symbol = changed > 0 ? "+" : "";
+    return `${symbol}${numToMoney.format(changed)}` 
 }
 
 export const formatSingleStockData = (data,timeframe) => {
@@ -140,13 +153,19 @@ export const formatPortfolio = (data,timeframe,holdings,capital) => {
         }
     })
     let currentPrice = formattedData[formattedData.length-1]['price']
-    let color = formattedData[1]['price'] < currentPrice ? "green" : "red";
+    let firstPrice = formattedData[0]['price']
+    let color = formattedData[0]['price'] < currentPrice ? "green" : "red";
+    let percentChanged = percentChange(firstPrice,currentPrice)
+    let cashChanged = cashChange(firstPrice,currentPrice)
     return (
         {
             min: min,
+            firstPrice: firstPrice,
             max: max,
             data: formattedData,
             color: color,
+            cashChange: cashChanged,
+            percentChange: percentChanged,
             currentPrice: currentPrice
         }
     )

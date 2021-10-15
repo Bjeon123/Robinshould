@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import LineGraph from '../charts/line_graph'
-import {numToMoney} from '../../util/numbers_api.util'
+import {numToMoney,cashChange, percentChange} from '../../util/numbers_api.util'
 import {formatPortfolio} from '../../util/numbers_api.util'
 
 class Portfolio extends React.Component{
@@ -8,6 +8,8 @@ class Portfolio extends React.Component{
         super(props)
         this.state={
             price: "",
+            percentChange: "",
+            cashChange: "",
             data: formatPortfolio(this.props.data,this.props.timeframe, this.props.holdings,this.props.user.total_capital)
         }
         this.setPrice=this.setPrice.bind(this)
@@ -23,9 +25,11 @@ class Portfolio extends React.Component{
         }
     }
 
-    setPrice(price){    
+    setPrice(price){
+        const percentChanged = percentChange(this.state.data['firstPrice'], price)    
+        const cashChanged = cashChange(this.state.data['firstPrice'], price)    
         if(price !== this.state.price){
-            this.setState({price})
+            this.setState({price, percentChange: percentChanged, cashChange: cashChanged})
         }
     }
     
@@ -38,6 +42,7 @@ class Portfolio extends React.Component{
         return(
             <div className="portfolio">
                 {this.state.price ? <h1>{`${numToMoney.format(this.state.price)}`}</h1> : <h1>{`${numToMoney.format(this.state.data.currentPrice)}`}</h1>}
+                {this.state.price ? <p>{`${this.state.cashChange} (${this.state.percentChange})`}</p> : <p>{`${this.state.data.cashChange} (${this.state.data.percentChange})`}</p>}
                 <LineGraph max={this.state.data.max} min={this.state.data.min} data={this.state.data.data} color={this.state.data.color} setPrice={this.setPrice} />
                 <button className={this.props.timeframe == "1D" ? "activated" : ""} onClick={() => this.props.changeData("1D")}>1D</button>
                 <button className={this.props.timeframe == "1W" ? "activated" : ""} onClick={() => this.props.changeData("1W")}>1W</button>
