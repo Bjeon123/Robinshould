@@ -4,14 +4,18 @@ import Porfolio from './portfolio_container'
 import Watchlists from './watchlists';
 import BuyingPower from './buying_power';
 import News from './news'
+import BuyinPowerForm from '../modal/buying_power_container'
+import Modal from '../modal/modal'
 
 class DashBoard extends React.Component{
     constructor(props){
         super(props)
-        this.logout = this.logout.bind(this)
         this.state={
-            windowClick: false
+            showModal: false
         }
+        this.logout = this.logout.bind(this)
+        this.closeModal = this.closeModal.bind(this)
+        this.showModal = this.showModal.bind(this)
     }
 
     logout(){
@@ -19,20 +23,28 @@ class DashBoard extends React.Component{
         this.props.logout();
     }
 
-    handleWindowClick(e){
-        if(e.target.className !== "stock-row"){
-            this.setState({windowClick: true})
-        }
+    closeModal(){
+        this.setState({showModal: false})
     }
+
+    showModal(e){
+        e.stopPropagation();
+        this.setState({showModal: true})
+    }
+
 
     render(){
         return (
-            <div onClick={(e)=>this.handleWindowClick(e)} className= "dashboard-container">
+            <div className= "dashboard-container">
+                {this.state.showModal ?
+                    <Modal close={this.closeModal} className="watchlist-modal" show={this.state.showModal} component={<BuyinPowerForm/>} comp={"watchlist-form"}/> 
+                    : null
+                }
                 <DashNav user={this.props.user} logout={this.props.logout} />
                 <div className="dashboard">
                     <div className="dashboard-left">
                         <Porfolio user={this.props.user} holdings={this.props.user.holdings} />
-                        <BuyingPower/>   
+                        <BuyingPower showModal={this.showModal}/>   
                         <News/>
                     </div>
                     <Watchlists/>

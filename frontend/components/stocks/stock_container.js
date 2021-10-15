@@ -20,7 +20,6 @@ class StockContainer extends React.Component{
         }
         this.changeData=this.changeData.bind(this)
         this.updateComponent = this.updateComponent.bind(this)
-        this.props.getCurrentUser(window.currentUser.id)
     }
 
     changeData(timeframe){
@@ -93,10 +92,6 @@ class StockContainer extends React.Component{
             logout = {this.props.logout}
             watchlists= {this.props.watchlists}
             fetchWatchlists={this.props.fetchWatchlists}
-            createHolding={this.props.createHolding} 
-            updateHolding={this.props.updateHolding}
-            deleteHolding={this.props.deleteHolding}
-            editCurrentUser={this.props.editCurrentUser}
             timeframe={this.state.timeframe || "1D"} 
             stockId={this.state.stockId} 
             currentUser={this.props.currentUser} 
@@ -127,9 +122,6 @@ const mDTP = dispatch =>(
         fetchStockYearData: (stock) => dispatch(fetchStockYearData(stock)),
         fetchStock5YearData: (stock) => dispatch(fetchStock5YearData(stock)),
         getCurrentUser: (userId) => dispatch(getCurrentUser(userId)),
-        // createHolding: (holding) =>dispatch(createHolding(holding)),
-        // updateHolding: (holding) => dispatch(updateHolding(holding)),
-        // deleteHolding: (holding) => dispatch(deleteHolding(holding)),
         editCurrentUser: (user) => dispatch(editCurrentUser(user)),
         fetchWatchlists: ()=> dispatch(fetchWatchlists()),
         logout: ()=> dispatch(logout())

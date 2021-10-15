@@ -34,7 +34,8 @@ const mSTP = state =>(
 const mDTP = dispatch =>(
     {
         logout: () => dispatch(logout()),
-        getCurrentUser: userId => dispatch(getCurrentUser(userId))
+        getCurrentUser: userId => dispatch(getCurrentUser(userId)),
+        
     }
 )
 

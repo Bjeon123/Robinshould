@@ -9,25 +9,30 @@ class WLForm extends React.Component{
         this.handleClick= this.handleClick.bind(this)
     }
 
-    handleClick(e){
-        // e.preventDefault()
-        // this.props.createWatchList(this.state);
-        // this.props.closeModal();
+    handleClick(){
+        const updatedUser = {
+            id: this.props.currentUser.id,
+            first_name: this.props.currentUser.first_name,
+            last_name: this.props.currentUser.last_name,
+            total_capital: this.props.currentUser.total_capital + parseFloat(this.state.money)
+        } 
+        this.props.editCurrentUser(updatedUser)
     }
 
     render(){
+        console.log(this.props)
         return(
             <form className="wlform">
                 <div>
                     <p>From</p>
                     <select> 
-                        <option onClick={(e)=>{e.stopPropagation()}}>Unlimited Money Bank Account</option>
+                        <option>Unlimited Money Bank Account</option>
                     </select>
                 </div>
                 <label>Amount
                     <input onChange={(e)=>this.setState({money: e.target.value})} type="text"/>
                 </label>
-                <button >Review</button>
+                <button onClick={this.handleClick}>Review</button>
             </form>
         )
     }

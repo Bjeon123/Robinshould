@@ -137,14 +137,9 @@ class Stock extends React.Component{
                     <div className="stocks-page-right">
                         <StockTransactionForm
                             currentShares={currentShares}
-                            // createHolding={this.props.createHolding}
-                            // updateHolding={this.props.updateHolding}
-                            // deleteHolding={this.props.deleteHolding}
-                            // editCurrentUser={this.props.editCurrentUser}
                             ticker={this.props.stock}
                             stockId={this.props.stockId}
                             currentPrice={stockDataFormatted.currentPrice}
-                            // currentUser={this.props.currentUser}
                         />
                         <button onClick={() => { this.setState({showModal: true}) }} className="watchlist-toggle">Add to Lists</button>
                     </div>
