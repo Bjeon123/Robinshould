@@ -37,7 +37,7 @@ class DashBoard extends React.Component{
         return (
             <div className= "dashboard-container">
                 {this.state.showModal ?
-                    <Modal close={this.closeModal} className="watchlist-modal" show={this.state.showModal} component={<BuyinPowerForm/>} comp={"watchlist-form"}/> 
+                    <Modal close={this.closeModal} className="watchlist-modal" show={this.state.showModal} component={<BuyinPowerForm/>} comp={"buying-power-form"}/> 
                     : null
                 }
                 <DashNav user={this.props.user} logout={this.props.logout} />

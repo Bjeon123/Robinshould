@@ -99,3 +99,24 @@
 .watchlist-form-row i{
     margin-right: 4%;
 }
+
+.buying-power-container{
+    margin-top: 100px;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+
+.buying-power-form{
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bp-row{
+    width: 40vw;
+    display: flex;
+    justify-content: space-between;
+}

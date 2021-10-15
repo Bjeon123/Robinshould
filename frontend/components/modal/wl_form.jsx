@@ -22,17 +22,18 @@ class WLForm extends React.Component{
     render(){
         console.log(this.props)
         return(
-            <form className="wlform">
-                <div>
+            <form className="buying-power-form">
+                <div className="bp-row">
                     <p>From</p>
-                    <select> 
-                        <option>Unlimited Money Bank Account</option>
-                    </select>
+                    <p>Unlimited Money Bank Account</p>
                 </div>
-                <label>Amount
+                <div className="bp-row"> 
+                    <p>Amount</p>
                     <input onChange={(e)=>this.setState({money: e.target.value})} type="text"/>
-                </label>
-                <button onClick={this.handleClick}>Review</button>
+                </div>
+                <div className = "bp-row">
+                    <button onClick={this.handleClick}>Review</button>
+                </div>
             </form>
         )
     }

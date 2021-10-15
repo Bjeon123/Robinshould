@@ -30,8 +30,11 @@ class News extends React.Component{
             )
         }
         return(
-            <div>
-                {newsRenderArr}
+            <div className="news-container">
+                <div className="news">
+                    <h1>News</h1>
+                    {newsRenderArr}
+                </div>
             </div>
         )
     }
