@@ -1,36 +1,55 @@
 .buying-power{
-    margin-top: 6%;
+    margin-top: 1%;
     padding-top: 2%;
-    padding-bottom: 2%;
     padding-left: 3%;
     padding-right: 3%;
-    border-width: 650px;
-    border-top: 1px solid #40494E;
-    border-bottom: 1px solid #40494E;
     border-radius: 5px;
     line-height: 3em;
+    margin-bottom: 10%;
+}
+
+.buying-power-inner{
+    margin-left: 2%;
+    width: 45vw;
 }
 
 .buying-power-title{
+    padding-bottom: 2%;
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid #40494E;
+}
+
+.buying-power-title.detailed{
+    border-bottom: 1px solid #40494d;
+}
+
+.buying-power-detailed-inner{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.buying-power-details{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding-right: 4%;
 }
 
 .buying-power-detailed{
     background-color: #1E2124;
     display: flex;
     flex-direction: column;
-    margin-top: 6%;
+    margin-top: 1%;
     padding-top: 2%;
     padding-bottom: 2%;
     padding-left: 3%;
     padding-right: 3%;
-    border-width: 650px;
     justify-content: space-between;
-    border-top: 1px solid #40494E;
-    border-bottom: 1px solid #40494E;
     border-radius: 5px;
     line-height: 3em;
+    margin-bottom: 10%;
 }
 
 .buying-power-detailed h1{
@@ -40,13 +59,28 @@
 
 .buying-power-detailed h2{
     font-family: avenir;
-
 }
 
+.buying-power-row-two{
+    padding-top: 3%;
+    width: 50%;
+    // display: flex;
+    // justify-content: space-between;
+}
 
-.dashboard-left{
-    display: block;
-    width: 700px;
+.buying-power-row{
+    padding-top: 8%;
+    padding-bottom: 8%;
+    display: flex;
+    justify-content: space-between;
+}
+.buying-power-detailed-inner p{
+    line-height: 1;
+    font-size: 1em;
+}
+
+.t-border{
+    border-top: 1px solid #40494d;
 }
 
 .buying-power h1{
@@ -55,22 +89,23 @@
 }
 
 .buying-power:hover{
-    background-color: #1E2124;
+    background-color: #1c1c1d;
     border-color: black;
     cursor: pointer;
 }
 
 .add_fund_button{
-    width: 300px;
+    width: 100%;
     border: none;
     border-radius: 3px;
     color: white;
-    background-color: #EE4E34;;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    background-color: #EE4E34;
+    margin-top: 4%;
+    margin-bottom: 4%;
+    padding-top: 15px;
+    padding-bottom: 15px;
     padding-left: 25px;
     padding-right: 25px;
-    margin-left: 25%;
 }
 
 .add_fund_button:hover{

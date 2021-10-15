@@ -1,15 +1,22 @@
 .dashboard-container{
     background-color: black;
     width: 100%;
-    overflow-x:hidden
+    overflow-x:hidden;
+    font-family: avenir;
 }
 .dashboard{
     margin-left: 15%;
     background-color: black;
     display: flex;
     width: 100%;
-    height: 800px;
+    height: 100%;
     color: white;
+    margin-bottom: 3%;
+}
+
+.dashboard-left{
+    display: block;
+    width: 50%;
 }
 
 .dash-nav-left{
@@ -20,6 +27,7 @@
     display: flex;
     align-items: center;
 }
+
 .dash-nav-right button{
     background-color: transparent;
     color: white;
@@ -33,8 +41,7 @@
 }
 
 .tree{
-    margin-right: 15%;
-    margin-left: 5%;
+    margin-left: 12%;
 }
 
 
@@ -43,11 +50,12 @@
     z-index: 1;
     padding-top: 3px;
     width: 100%;
-    height: 45px;
+    height: 60px;
     background-color: black;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid white;
 }
 
 .account-dropdown{
@@ -59,7 +67,7 @@
     right: 1%;
     top: 50px;
     color: white;
-    width: 20%;
+    width: 270px;
     background-color: #1E2124;
     border: 1px solid #40494E;
     border-radius: 3px;

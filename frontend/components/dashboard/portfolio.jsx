@@ -39,17 +39,38 @@ class Portfolio extends React.Component{
         for (let i = 0; i < this.props.stocks ; i++) {
             tickerArr.push(this.props.stocks[i].ticker)
         }
+        let timeframe;
+        if(this.props.timeframe === "1D"){
+            timeframe = "Today"
+        }
+        else if(this.props.timeframe === "1W"){
+            timeframe = "Past Week"
+        }
+        else if(this.props.timeframe === "1M"){
+            timeframe = "Past Month"
+        }
+        else if(this.props.timeframe === "3M"){
+            timeframe = "Past 3 Months"
+        }
+        else if(this.props.timeframe === "1Y"){
+            timeframe = "Past Year"
+        }
+        else{
+            timeframe = "All Time"
+        }
         return(
             <div className="portfolio">
-                {this.state.price ? <h1>{`${numToMoney.format(this.state.price)}`}</h1> : <h1>{`${numToMoney.format(this.state.data.currentPrice)}`}</h1>}
-                {this.state.price ? <p>{`${this.state.cashChange} (${this.state.percentChange})`}</p> : <p>{`${this.state.data.cashChange} (${this.state.data.percentChange})`}</p>}
+                <div className="portfolio-numbers">
+                    {this.state.price ? <h1>{`${numToMoney.format(this.state.price)}`}</h1> : <h1>{`${numToMoney.format(this.state.data.currentPrice)}`}</h1>}
+                    {this.state.price ? <p>{`${this.state.cashChange} (${this.state.percentChange})`}</p> : <p>{`${this.state.data.cashChange} (${this.state.data.percentChange}) ${timeframe}`}</p>}
+                </div>
                 <LineGraph max={this.state.data.max} min={this.state.data.min} data={this.state.data.data} color={this.state.data.color} setPrice={this.setPrice} />
                 <button className={this.props.timeframe == "1D" ? "activated" : ""} onClick={() => this.props.changeData("1D")}>1D</button>
                 <button className={this.props.timeframe == "1W" ? "activated" : ""} onClick={() => this.props.changeData("1W")}>1W</button>
                 <button className={this.props.timeframe == "1M" ? "activated" : ""} onClick={() => this.props.changeData("1M")}>1M</button>
                 <button className={this.props.timeframe == "3M" ? "activated" : ""} onClick={() => this.props.changeData("3M")}>3M</button>
                 <button className={this.props.timeframe == "1Y" ? "activated" : ""} onClick={() => this.props.changeData("1Y")}>1Y</button>
-                <button className={this.props.timeframe == "5Y" ? "activated" : ""} onClick={() => this.props.changeData("5Y")}>5Y</button>
+                <button className={this.props.timeframe == "5Y" ? "activated" : ""} onClick={() => this.props.changeData("5Y")}>ALL</button>
             </div>
         )
     }

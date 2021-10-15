@@ -1,7 +1,14 @@
 .portfolio{
     margin-top: 15%;
-    width: 650px;
-    height: 400px;
+    width: 45vw;
+    height: auto;
+    margin-left: 5%;
+    overflow: hidden;
+    border-bottom: 1px solid #30363a;
+}
+
+.portfolio-numbers{
+    margin-bottom: 5%;
 }
 
 .portfolio h1{
