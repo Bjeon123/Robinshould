@@ -62,7 +62,11 @@ class Portfolio extends React.Component{
             <div className="portfolio">
                 <div className="portfolio-numbers">
                     {this.state.price ? <h1>{`${numToMoney.format(this.state.price)}`}</h1> : <h1>{`${numToMoney.format(this.state.data.currentPrice)}`}</h1>}
-                    {this.state.price ? <p>{`${this.state.cashChange} (${this.state.percentChange})`}</p> : <p>{`${this.state.data.cashChange} (${this.state.data.percentChange}) ${timeframe}`}</p>}
+                    {this.state.price ? <p>{`${this.state.cashChange} (${this.state.percentChange})`}</p> : 
+                    <div className="portfolio-cash-percent">
+                        <p>{`${this.state.data.cashChange} (${this.state.data.percentChange}) `}</p>
+                        <p id="timeframe">{`${timeframe}`}</p>
+                    </div>}
                 </div>
                 <LineGraph max={this.state.data.max} min={this.state.data.min} data={this.state.data.data} color={this.state.data.color} setPrice={this.setPrice} />
                 <button className={this.props.timeframe == "1D" ? "activated" : ""} onClick={() => this.props.changeData("1D")}>1D</button>
