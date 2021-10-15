@@ -130,7 +130,7 @@ class Stock extends React.Component{
                             </div>
                         </div>
                         <h2>News</h2>
-                        <div className="news-container">
+                        <div>
                             {stockNews}
                         </div>
                     </div>

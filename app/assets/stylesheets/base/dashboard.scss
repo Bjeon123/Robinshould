@@ -5,7 +5,7 @@
     font-family: avenir;
 }
 .dashboard{
-    margin-left: 15%;
+    margin-left: 13%;
     background-color: black;
     display: flex;
     width: 100%;
@@ -60,7 +60,7 @@
 .account-dropdown{
     z-index: 1;
     font-family: avenir;
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     right: 1%;
