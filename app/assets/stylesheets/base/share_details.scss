@@ -42,6 +42,36 @@
     cursor: pointer;
 }
 
+.new-wl-form{
+    padding-top: 4%;
+    margin-left: 10%;
+    margin-right: 10%;
+    display: flex;
+    flex-direction: column;
+}
+
+.new-wl-form input{
+    background-color: #30363a;
+    color: white;
+    border: 2px solid #30363a;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    outline: none;
+    margin-bottom: 12px;
+}
+.new-wl-form input:hover{
+    background-color: #1E2124;
+}
+.new-wl-form input::placeholder {
+    padding-left: 10px;
+  }
+
+.wl-form-btns{
+    display: flex;
+    justify-content: space-between;
+}
+
 .watchlist-container{
     position: fixed;
     top: 13%;
@@ -52,6 +82,63 @@
     width: 270px;
     height: 77%;
     background-color: #1E2124;
+}
+
+.watchlist-container.red #cancel-wl-btn{
+    background-color: transparent;
+    border: 1px solid #f14c01;
+    color: #f14c01;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.watchlist-container.red #cancel-wl-btn:hover{
+    background-color: #6b291f;
+}
+.watchlist-container.green #cancel-wl-btn:hover{
+    background-color: #246827;
+}
+.watchlist-container.green #cancel-wl-btn{
+    background-color: transparent;
+    border: 1px solid #00c806;
+    border-radius: 5px;
+    color: #00c806;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.watchlist-container.green #create-wl-btn{
+    background-color: #00c806;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.watchlist-container.red #create-wl-btn{
+    background-color: #f14c01;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+.add_list_btn.red:hover{
+    color: #f14c01;
+}
+.add_list_btn.green:hover{
+    color: #00c806;
 }
 
 .watchlist-container h3{

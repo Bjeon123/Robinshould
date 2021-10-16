@@ -7,7 +7,7 @@ class Watchlist extends React.Component{
         super(props)
         this.state={
             opened: false,
-            chervonSymbol: "fas fa-chevron-up"
+            chervonSymbol: "fas fa-chevron-down"
         }
     }
 

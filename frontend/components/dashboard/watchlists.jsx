@@ -51,7 +51,7 @@ class Watchlists extends React.Component{
         if (this.state.watchlists=== null || Object.keys(this.props.user).length==0){            
             return null;
         }
-        const watchlistForm = <WLForm createWatchList={this.props.createNewWatchlist} closeModal={this.closeModal} user={this.props.user} />
+        // const watchlistForm = <WLForm createWatchList={this.props.createNewWatchlist} closeModal={this.closeModal} user={this.props.user} />
         const { holdings } = this.props.user;
         const watchlists = this.props.watchlists;
         const holdingElements = Object.values(holdings).map(
@@ -59,25 +59,25 @@ class Watchlists extends React.Component{
         )
         const watchlistsArr = Object.values(watchlists)
         const newWLForm = 
-        <div className="new-WL-form">
+        <div className="new-wl-form">
             <input onChange= {(e)=>this.setState({newWLName: e.target.value})} type="text" placeholder="List Name" value={this.state.newWLName}/>
-            <div>
-                <button onClick={this.cancelNewWL}>Cancel</button>
-                <button onClick={this.handleNewWL}>Create List</button>
+            <div className="wl-form-btns">
+                <button id="cancel-wl-btn" onClick={this.cancelNewWL}>Cancel</button>
+                <button id="create-wl-btn" onClick={this.handleNewWL}>Create List</button>
             </div>
         </div>
         const watchlistsElements = watchlistsArr.map((watchlist,index) => {
-            return <Watchlist watchlist={watchlist} key={`${index}`} handleClick={this.handleClick}/>
+            return <Watchlist theme={this.props.theme} watchlist={watchlist} key={`${index}`} handleClick={this.handleClick}/>
         })
         return(
-            <div className="watchlist-container">
+            <div className={`watchlist-container ${this.props.theme}`}>
                 <div id="wl-stock-title-container">
                     <h3 id="wl-stock-title">Stocks</h3>
                 </div>
                 {holdingElements}
                 <div id="wl-list-title-container" className="watchlists-title">
                     <h3 id="wl-list-title">Lists</h3>
-                    <button className="add_list_btn" onClick={() => { this.setState({ addListForm: true }) }}>+</button>
+                    <button className={`add_list_btn ${this.props.theme}`} onClick={() => { this.setState({ addListForm: true }) }}>+</button>
                 </div>
                 {this.state.addListForm ? newWLForm : null }
                 {watchlistsElements}
@@ -89,7 +89,8 @@ class Watchlists extends React.Component{
 const mSTP= state=>(
     {
         user: state.user,
-        watchlists: state.watchlists
+        watchlists: state.watchlists,
+        theme: state.theme
     }
 )
 
