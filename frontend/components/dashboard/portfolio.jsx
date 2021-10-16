@@ -15,12 +15,21 @@ class Portfolio extends React.Component{
         this.setPrice=this.setPrice.bind(this)
     }
 
+    componentDidMount(){
+        const color = this.state.data.firstPrice < this.state.data.currentPrice ? "green" : "red";
+        this.props.receiveTheme(color)
+    }
+
     static getDerivedStateFromProps(props, state) {
         if(state.price !== ""){
             return {}
         }
         else{
             let newData = formatPortfolio(props.data,props.timeframe, props.holdings,props.user.total_capital)
+            const color = newData.firstPrice < newData.currentPrice ? "green" : "red";
+            if(props.theme !== color){
+                props.receiveTheme(color)
+            }
             return {data: newData };
         }
     }
@@ -58,6 +67,7 @@ class Portfolio extends React.Component{
         else{
             timeframe = "All Time"
         }
+        console.log(this.props)
         return(
             <div className="portfolio">
                 <div className="portfolio-numbers">
@@ -69,12 +79,12 @@ class Portfolio extends React.Component{
                     </div>}
                 </div>
                 <LineGraph max={this.state.data.max} min={this.state.data.min} data={this.state.data.data} color={this.state.data.color} setPrice={this.setPrice} />
-                <button className={this.props.timeframe == "1D" ? "activated" : ""} onClick={() => this.props.changeData("1D")}>1D</button>
-                <button className={this.props.timeframe == "1W" ? "activated" : ""} onClick={() => this.props.changeData("1W")}>1W</button>
-                <button className={this.props.timeframe == "1M" ? "activated" : ""} onClick={() => this.props.changeData("1M")}>1M</button>
-                <button className={this.props.timeframe == "3M" ? "activated" : ""} onClick={() => this.props.changeData("3M")}>3M</button>
-                <button className={this.props.timeframe == "1Y" ? "activated" : ""} onClick={() => this.props.changeData("1Y")}>1Y</button>
-                <button className={this.props.timeframe == "5Y" ? "activated" : ""} onClick={() => this.props.changeData("5Y")}>ALL</button>
+                <button className={this.props.timeframe == "1D" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1D")}>1D</button>
+                <button className={this.props.timeframe == "1W" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1W")}>1W</button>
+                <button className={this.props.timeframe == "1M" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1M")}>1M</button>
+                <button className={this.props.timeframe == "3M" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("3M")}>3M</button>
+                <button className={this.props.timeframe == "1Y" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1Y")}>1Y</button>
+                <button className={this.props.timeframe == "5Y" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("5Y")}>ALL</button>
             </div>
         )
     }

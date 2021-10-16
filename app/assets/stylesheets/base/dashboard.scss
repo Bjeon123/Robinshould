@@ -36,8 +36,12 @@
     margin-right: 24px;
 }
 
-.dash-nav-right button:hover{
-    color: rgb(29, 197, 29);
+.dash-nav-right.red button:hover{
+    color: #f14c01;
+}
+
+.dash-nav-right.green button:hover{
+    color: #00c806;
 }
 
 .tree{

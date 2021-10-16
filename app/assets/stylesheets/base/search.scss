@@ -3,9 +3,6 @@
     font-family: avenir;
 }
 
-.search-container b{
-    color: green;
-}
 .search-container p{
     font-size: .8em;
 }
@@ -21,6 +18,13 @@
 }
 .search-stock-ele{
     width: 20%;
+}
+
+.search-stock-ele.red b{
+    color: #f14c01;
+}
+.search-stock-ele.green b{
+    color: #00c806;
 }
 
 .search{

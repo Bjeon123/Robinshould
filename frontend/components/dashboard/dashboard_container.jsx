@@ -19,7 +19,7 @@ class DashBoardContainer extends React.Component {
             return null;
         }
         return (
-            <Dashboard logout={this.props.logout} user={this.props.user} component="dashboard"></Dashboard>
+            <Dashboard theme={this.props.theme} logout={this.props.logout} user={this.props.user} component="dashboard"></Dashboard>
         )
     }
 }
@@ -27,7 +27,8 @@ class DashBoardContainer extends React.Component {
 const mSTP = state =>(
     {
         session: state.session,
-        user: state.user
+        user: state.user,
+        theme: state.theme
     }
 )
 

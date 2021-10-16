@@ -1,6 +1,8 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import Portfolio from './portfolio'
 import { fetchAllQuotes,fetchWeekQuotes, fetchMonthQuotes, fetchThreeMonthsQuotes, fetchOneYearQuotes, fetchFiveYearQuotes } from '../../util/stock_api_util'
+import { receiveTheme } from '../../actions/theme_actions'
 import {fetchStockTickers} from '../../util/stock_api_util'
 
 class PortfolioContainer extends React.Component {
@@ -70,9 +72,26 @@ class PortfolioContainer extends React.Component {
             return null
         }
         return (
-            <Portfolio user={this.props.user} holdings={this.props.holdings} timeframe={this.state.timeframe} data ={this.state.data} stocks={Object.values(this.state.stocks)} changeData={this.changeData}></Portfolio>
+            <Portfolio 
+                theme = {this.props.theme}
+                receiveTheme = {this.props.receiveTheme}
+                user={this.props.user} 
+                holdings={this.props.holdings} 
+                timeframe={this.state.timeframe} 
+                data ={this.state.data} 
+                stocks={Object.values(this.state.stocks)}
+                changeData={this.changeData}>
+            </Portfolio>
         )
     }
 }
 
-export default PortfolioContainer
+const mSTP = state =>({
+    theme: state.theme
+})
+
+const mDTP = dispatch =>({
+    receiveTheme: theme => dispatch(receiveTheme(theme))
+})
+
+export default connect(mSTP,mDTP)(PortfolioContainer)

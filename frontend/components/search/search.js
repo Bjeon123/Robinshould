@@ -48,7 +48,7 @@ class Search extends React.Component{
                 searchResults.push(
                     <Link to={`/stocks/${this.state.stocks[i].ticker}`}>
                         <div id={this.state.stocks[i].ticker} onClick={this.handleCloseResults} className="stock-row">
-                            <p className="search-stock-ele"><b>{this.state.stocks[i].ticker.slice(0,inputLenth)}</b>{this.state.stocks[i].ticker.slice(inputLenth)}</p>
+                            <p className={`search-stock-ele ${this.props.theme}`}><b>{this.state.stocks[i].ticker.slice(0,inputLenth)}</b>{this.state.stocks[i].ticker.slice(inputLenth)}</p>
                             <p>{this.state.stocks[i].company_name} </p>
                         </div>
                     </Link>

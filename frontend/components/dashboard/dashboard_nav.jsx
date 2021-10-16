@@ -63,12 +63,12 @@ class DashNav extends React.Component{
         }
         return (
             <div>
-                <nav className="dash-nav">
+                <nav className={`dash-nav`}>
                     <div className="dash-nav-left">
                         <img className="tree" src={window.tree} width="4%" />
-                        <Search/>
+                        <Search theme={this.props.theme}/>
                     </div>
-                    <div className="dash-nav-right">
+                    <div className={`dash-nav-right ${this.props.theme}`}>
                         <Link to={"/dashboard"}>
                             <button>Portfolio</button>
                         </Link>

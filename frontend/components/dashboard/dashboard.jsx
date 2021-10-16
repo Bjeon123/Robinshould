@@ -40,7 +40,7 @@ class DashBoard extends React.Component{
                     <Modal close={this.closeModal} className="watchlist-modal" show={this.state.showModal} component={<BuyinPowerForm/>} comp={"buying-power-form"}/> 
                     : null
                 }
-                <DashNav user={this.props.user} logout={this.props.logout} />
+                <DashNav theme={this.props.theme} user={this.props.user} logout={this.props.logout} />
                 <div className="dashboard">
                     <div className="dashboard-left">
                         <Porfolio user={this.props.user} holdings={this.props.user.holdings} />
