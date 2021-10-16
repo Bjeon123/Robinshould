@@ -61,7 +61,7 @@ class WatchListCard extends React.Component{
                     <LineChart min={dataFormatted.min} max ={dataFormatted.max} color={dataFormatted.color} data={dataFormatted.data}lw={.4} width={55} height={30}/>
                     <div className="card-pp">
                         <p>{numToMoney.format(dataFormatted.currentPrice)}</p>
-                        <p style={{ color: realColor }}>{formatPercent(dataFormatted.percentChange)}</p>
+                        <p style={{ color: realColor }}>{dataFormatted.percentChange}</p>
                     </div>
                 </div> 
             </Link>

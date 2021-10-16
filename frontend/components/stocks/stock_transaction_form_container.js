@@ -5,7 +5,8 @@ import StockTransactionForm from "./stock_transaction_form"
 
 const mSTP = (state) =>({
     errors: Object.values(state.errors.holdings),
-    currentUser: state.user
+    currentUser: state.user,
+    theme:state.theme
 })
 
 const mDTP = dispatch =>(

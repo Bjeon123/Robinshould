@@ -141,9 +141,9 @@ class StockTransactionForm extends React.Component{
             <div>
                 <form className="transaction-form">
                     <div className="transaction-options">
-                        <h1 onClick={()=>this.changeFormType("Buy Stock")} id={this.state.formType === "Buy Stock" ? "active-transaction" : "inactive-transaction"}>{`Buy ${this.props.ticker}`}</h1>
+                        <h1 onClick={()=>this.changeFormType("Buy Stock")} id={this.state.formType === "Buy Stock" ? `active-transaction-${this.props.theme}` : "inactive-transaction"}>{`Buy ${this.props.ticker}`}</h1>
                         {hasShares ? 
-                            <h1 onClick={()=>this.changeFormType("Sell Stock")} id={this.state.formType === "Sell Stock" ? "active-transaction" : "inactive-transaction"} >{`Sell ${this.props.ticker}`}</h1> :
+                            <h1 onClick={()=>this.changeFormType("Sell Stock")} id={this.state.formType === "Sell Stock" ? `active-transaction-${this.props.theme}` : "inactive-transaction"} >{`Sell ${this.props.ticker}`}</h1> :
                             ""
                         }
                     </div>
@@ -170,10 +170,10 @@ class StockTransactionForm extends React.Component{
                         <i className="fas fa-exclamation-circle"><p>Error</p></i>
                         <p>{this.state.errors}</p>
                     </div> : null}
-                    <button onClick={this.handleSubmit} className="transaction-button">Execute Order</button>
+                    <button onClick={this.handleSubmit} className={`transaction-button ${this.props.theme}`}>Execute Order</button>
                     {this.state.formType === "Buy Stock" ? 
-                        <p id="tf-footer">${this.props.currentUser.total_capital.toFixed(2)} buying power available</p> :
-                        <p id="tf-footer">{this.props.currentShares.shares} shares avaliable</p>
+                        <p id={`tf-footer-${this.props.theme}`}>${this.props.currentUser.total_capital.toFixed(2)} buying power available</p> :
+                        <p id={`tf-footer-${this.props.theme}`}>{this.props.currentShares.shares} shares avaliable</p>
                     }
                 </form>
             </div>

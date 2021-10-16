@@ -145,14 +145,24 @@
 .fas.fa-exclamation-circle p{
     margin-left: 5px;
 }
-#tf-footer{
+#tf-footer-red{
     width: 100%;
     text-align: center;
     font-size: .9em;
     border-top: 1px solid #40494E;
     padding-top: 15px;
     padding-bottom: 15px;
-    color: #EE4E34;;
+    color: #f14c01;
+}
+
+#tf-footer-green{
+    width: 100%;
+    text-align: center;
+    font-size: .9em;
+    border-top: 1px solid #40494E;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #00c806;
 }
 
 #mkt-price{
@@ -177,10 +187,17 @@
     font-size: .8em;
     font-family: avenir;
     font-weight: bold;
-    background-color: #EE4E34;;
     border: none;
     border-radius: 3px;
     padding: 5%;
+}
+
+.transaction-button.red{
+    background-color: #f14c01;
+}
+
+.transaction-button.green{
+    background-color: #00c806;
 }
 .transaction-button:hover{
     background-color: rgb(224, 4, 4);
@@ -189,6 +206,13 @@
 .transaction-options{
     display: flex;
     border-bottom:1px solid #40494E;
+}
+
+.transaction-options.red{
+    color: #f14c01;
+}
+.transaction-options.green{
+    color: #00c806;
 }
 
 .stocks-page-right{
@@ -208,6 +232,16 @@
     border-radius: 3px;
     width: 200px;
     height: 40px;
+}
+
+.watchlist-toggle.red{
+    border-color: #f14c01;
+    color: #f14c01;
+}
+
+.watchlist-toggle.green{
+    border-color: #00c806;
+    color: #00c806;
 }
 
 .watchlist-toggle:hover{

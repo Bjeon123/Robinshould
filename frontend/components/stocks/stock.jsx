@@ -5,7 +5,7 @@ import StockTransactionForm from './stock_transaction_form_container'
 import ShareDetails from './share_details'
 import Modal from '../modal/modal'
 import WatchlistForm from '../modal/watchlist_form'
-import { formatSingleStockData,numToMoney,formatPercent } from '../../util/numbers_api.util'
+import { formatSingleStockData,numToMoney,cashChange,percentChange } from '../../util/numbers_api.util'
 import NewsElement from '../news/news_element'
 
 
@@ -16,7 +16,10 @@ class Stock extends React.Component{
             showModal: false,
             price: "",
             showFullCompanyDescription: false,
-            news: null
+            news: null,
+            percentChange: "",
+            cashChange: "",
+            data: formatSingleStockData(this.props.data, this.props.timeframe)
         }
         this.closeModal=this.closeModal.bind(this);
         this.setPrice = this.setPrice.bind(this);
@@ -25,7 +28,10 @@ class Stock extends React.Component{
     }
 
     componentDidMount(){
-        this.setState({news: this.props.data['news']})
+        const color = this.state.data.firstPrice < this.state.data.currentPrice ? "green" : "red";
+        this.setState({news: this.props.data['news']},
+            ()=>this.props.receiveTheme(color)
+        )
     }
 
     closeModal(){
@@ -33,8 +39,24 @@ class Stock extends React.Component{
     }
 
     setPrice(price){
+        const percentChanged = percentChange(this.state.data['firstPrice'], price)    
+        const cashChanged = cashChange(this.state.data['firstPrice'], price)    
         if(price != this.state.price){
-            this.setState({price})
+            this.setState({price, percentChange: percentChanged, cashChange: cashChanged})
+        }
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        if(state.price !== ""){
+            return {}
+        }
+        else{
+            let newData = formatSingleStockData(props.data,props.timeframe)
+            const color = newData.firstPrice < newData.currentPrice ? "green" : "red";
+            if(props.theme !== color){
+                props.receiveTheme(color)
+            }
+            return {data: newData };
         }
     }
 
@@ -67,7 +89,7 @@ class Stock extends React.Component{
     }
 
     render(){
-        const stockDataFormatted = formatSingleStockData(this.props.data, this.props.timeframe)
+        const {data} = this.state;
         const watchlistForm = <WatchlistForm fetchWatchlists={this.props.fetchWatchlists} closeModal={this.closeModal} watchlists={this.props.watchlists} ticker={this.props.stock} stockId={this.props.stockId}/>
         let currentShares = null;
         for (const holdingId in this.props.currentUser.holdings) {
@@ -80,7 +102,26 @@ class Stock extends React.Component{
             numShares = currentShares.shares_bought
         }
         const stockNews = this.state.news ? this.formatNews() : null;
-        const sharesComponent = currentShares ? <ShareDetails shares={currentShares} currentPrice={stockDataFormatted.currentPrice} openPrice={stockDataFormatted.data[0]['price']}></ShareDetails> : null;
+        const sharesComponent = currentShares ? <ShareDetails shares={currentShares} currentPrice={data.currentPrice} openPrice={data.data[0]['price']}></ShareDetails> : null;
+        let timeframe;
+        if(this.props.timeframe === "1D"){
+            timeframe = "Today"
+        }
+        else if(this.props.timeframe === "1W"){
+            timeframe = "Past Week"
+        }
+        else if(this.props.timeframe === "1M"){
+            timeframe = "Past Month"
+        }
+        else if(this.props.timeframe === "3M"){
+            timeframe = "Past 3 Months"
+        }
+        else if(this.props.timeframe === "1Y"){
+            timeframe = "Past Year"
+        }
+        else{
+            timeframe = "All Time"
+        }
         return(
             <div className="outer-container">
                 <NavBar/>
@@ -89,17 +130,22 @@ class Stock extends React.Component{
                     <div className="stock-info">
                         <div className="stocks-page-chart">
                             <h1>{this.props.compInfo.company.companyName}</h1>
-                            {this.state.price ? <h1>{`${numToMoney.format(this.state.price)}`}</h1> : <h1>{`${numToMoney.format(stockDataFormatted.currentPrice)}`}</h1>}
-                            <p>{`${numToMoney.format(stockDataFormatted.cashChange)} (${formatPercent(stockDataFormatted.percentChange)})`}</p>
-                            <div className="lg-container">
-                                <LineGraph setPrice={this.setPrice} max={stockDataFormatted.max} min={stockDataFormatted.min} data={stockDataFormatted.data} color={stockDataFormatted.color}></LineGraph>
+                            {this.state.price ? <h1>{`${numToMoney.format(this.state.price)}`}</h1> : <h1>{`${numToMoney.format(data.currentPrice)}`}</h1>}
+                            {this.state.price ? <p>{`${this.state.cashChange} (${this.state.percentChange})`}</p> : 
+                            <div className="portfolio-cash-percent">
+                                <p>{`${data.cashChange} (${data.percentChange}) `}</p>
+                                <p id="timeframe">{`${timeframe}`}</p>
+                            </div>}
+                            {/* <p>{`${data.cashChange} (${data.percentChange})`}</p> */}
+                            <div>
+                                <LineGraph setPrice={this.setPrice} max={data.max} min={data.min} data={data.data} color={data.color}></LineGraph>
                             </div>
-                            <button className={this.props.timeframe == "1D" ? "activated" : ""} onClick={() => this.props.changeData("1D")}>1D</button>
-                            <button className={this.props.timeframe == "1W" ? "activated" : ""} onClick={() => this.props.changeData("1W")}>1W</button>
-                            <button className={this.props.timeframe == "1M" ? "activated" : ""} onClick={() => this.props.changeData("1M")}>1M</button>
-                            <button className={this.props.timeframe == "3M" ? "activated" : ""} onClick={() => this.props.changeData("3M")}>3M</button>
-                            <button className={this.props.timeframe == "1Y" ? "activated" : ""} onClick={() => this.props.changeData("1Y")}>1Y</button>
-                            <button className={this.props.timeframe == "5Y" ? "activated" : ""} onClick={() => this.props.changeData("5Y")}>5Y</button>
+                            <button className={this.props.timeframe == "1D" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1D")}>1D</button>
+                            <button className={this.props.timeframe == "1W" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1W")}>1W</button>
+                            <button className={this.props.timeframe == "1M" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1M")}>1M</button>
+                            <button className={this.props.timeframe == "3M" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("3M")}>3M</button>
+                            <button className={this.props.timeframe == "1Y" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1Y")}>1Y</button>
+                            <button className={this.props.timeframe == "5Y" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("5Y")}>5Y</button>
                         </div>
                         <div>
                             {sharesComponent}
@@ -139,9 +185,9 @@ class Stock extends React.Component{
                             currentShares={currentShares}
                             ticker={this.props.stock}
                             stockId={this.props.stockId}
-                            currentPrice={stockDataFormatted.currentPrice}
+                            currentPrice={data.currentPrice}
                         />
-                        <button onClick={() => { this.setState({showModal: true}) }} className="watchlist-toggle">Add to Lists</button>
+                        <button onClick={() => { this.setState({showModal: true}) }} className={`watchlist-toggle ${this.props.theme}`}>Add to Lists</button>
                     </div>
                 </div>
             </div>

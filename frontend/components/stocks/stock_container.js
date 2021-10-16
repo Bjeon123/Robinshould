@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import Stock from './stock'
 import { getCurrentUser, editCurrentUser } from '../../actions/users_actions'
 import { fetchStockId,fetchintradayData,fetchStockWeekData, fetchStockMonthData, fetchStock3MonthData, fetchStockYearData,fetchStock5YearData,fetchStockStats} from '../../util/stock_api_util'
+import {receiveTheme} from '../../actions/theme_actions'
 // import { createHolding,updateHolding,deleteHolding} from '../../actions/holding_actions'
 import {fetchWatchlists} from '../../actions/watchlist_actions'
 import {logout} from '../../actions/session_actions'
@@ -89,7 +90,8 @@ class StockContainer extends React.Component{
         }
         return(
             <Stock 
-            logout = {this.props.logout}
+            theme= {this.props.theme}
+            receiveTheme = {this.props.receiveTheme}
             watchlists= {this.props.watchlists}
             fetchWatchlists={this.props.fetchWatchlists}
             timeframe={this.state.timeframe || "1D"} 
@@ -105,6 +107,7 @@ class StockContainer extends React.Component{
 
 const mSTP = (state,ownProps) =>(
     {
+        theme: state.theme,
         stock: ownProps.match.params.ticker,
         sessions: state.sessions,
         currentUser: state.user,
@@ -114,6 +117,7 @@ const mSTP = (state,ownProps) =>(
 
 const mDTP = dispatch =>(
     {
+        receiveTheme: theme => dispatch(receiveTheme(theme)),
         fetchStockId: (ticker) => dispatch(fetchStockId(ticker)),
         fetchStockWeekData: (stock) => dispatch(fetchStockWeekData(stock)),
         fetchStockStats: (stock) => dispatch(fetchStockStats(stock)),
@@ -124,7 +128,6 @@ const mDTP = dispatch =>(
         getCurrentUser: (userId) => dispatch(getCurrentUser(userId)),
         editCurrentUser: (user) => dispatch(editCurrentUser(user)),
         fetchWatchlists: ()=> dispatch(fetchWatchlists()),
-        logout: ()=> dispatch(logout())
     }
 )
 

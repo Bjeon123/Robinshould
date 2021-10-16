@@ -31,8 +31,12 @@
     width: 38%;
 }
 
-#active-transaction{
-    color: #EE4E34;
+#active-transaction-red{
+    color: #f14c01;
+}
+
+#active-transaction-green{
+    color: #00c806;
 }
 
 #inactive-transaction:hover{

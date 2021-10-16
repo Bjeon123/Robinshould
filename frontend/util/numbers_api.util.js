@@ -6,10 +6,11 @@ export const numToMoney = new Intl.NumberFormat('en-US',
     }
 );
 
-export const formatPercent = (percent)=>{
-    let symbol = percent < 0 ? "-" : "+";
-    return `${symbol}${percent.toFixed(2)}%` 
-}
+// export const formatPercent = (percent)=>{
+//     debugger
+//     let symbol = percent < 0 ? "-" : "+";
+//     return `${symbol}${percent.toFixed(2)}%` 
+// }
 
 export const percentChange = (firstPrice, lastPrice)=>{
     const percent = ((lastPrice - firstPrice)*100) / firstPrice 
@@ -26,7 +27,6 @@ export const cashChange = (firstPrice, lastPrice)=>{
 export const formatSingleStockData = (data,timeframe) => {
     const datapoints = data['intraday-prices'] ? data['intraday-prices'] : data['chart']
     const dataLastIdx = datapoints.length - 1;
-    let currentPrice = datapoints[dataLastIdx]['close'].toFixed(2);
     let dataHasTime = (timeframe === "3M" || timeframe === "1Y" || timeframe === "5Y") ? false : true;
     let max = Number.MIN_VALUE;
     let min = Number.MAX_VALUE;
@@ -63,18 +63,21 @@ export const formatSingleStockData = (data,timeframe) => {
         }
         formattedData.push(newRow)
     }
-    let percentChange = ((formattedData[dataLastIdx]['price'] - formattedData[0]['price'])/formattedData[0]['price'])*100
-    let cashChange = formattedData[dataLastIdx]['price'] - formattedData[0]['price']
+    let currentPrice = formattedData[dataLastIdx]['price'].toFixed(2);
     let color = formattedData[0]['price'] < formattedData[dataLastIdx]['price'] ? "green" : "red";
+    let firstPrice = formattedData[0]['price']
+    let cashChanged = cashChange(firstPrice,currentPrice)
+    let percentChanged = percentChange(firstPrice,currentPrice);
     return (
         {
+            percentChange: percentChanged,
+            firstPrice: firstPrice,
             min: min,
             max: max,
             data: formattedData,
             color: color,
             currentPrice: currentPrice,
-            percentChange: percentChange,
-            cashChange: cashChange
+            cashChange: cashChanged
         }
     )
 };

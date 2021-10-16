@@ -67,7 +67,6 @@ class Portfolio extends React.Component{
         else{
             timeframe = "All Time"
         }
-        console.log(this.props)
         return(
             <div className="portfolio">
                 <div className="portfolio-numbers">
