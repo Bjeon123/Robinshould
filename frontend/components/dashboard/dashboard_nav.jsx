@@ -54,9 +54,9 @@ class DashNav extends React.Component{
                     </div>
                 </a>
                 <div className="personal-links">
-                    <div className="personal-links-inner">
+                    <div onClick={() => this.props.logout()} className="personal-links-inner">
                         <i className="fas fa-sign-out-alt"></i>
-                        <div onClick={() => this.props.logout()}>Log Out</div>
+                        <div>Log Out</div>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import LineGraph from '../charts/line_graph'
-import DashNav from '../dashboard/dashboard_nav'
+import NavBar from '../dashboard/nav_bar_container'
 import StockTransactionForm from './stock_transaction_form_container'
 import ShareDetails from './share_details'
 import Modal from '../modal/modal'
@@ -83,7 +83,7 @@ class Stock extends React.Component{
         const sharesComponent = currentShares ? <ShareDetails shares={currentShares} currentPrice={stockDataFormatted.currentPrice} openPrice={stockDataFormatted.data[0]['price']}></ShareDetails> : null;
         return(
             <div className="outer-container">
-                <DashNav user={this.props.currentUser} logout={this.props.logout}/>
+                <NavBar/>
                 <Modal close={this.closeModal} className="watchlist-modal" show={this.state.showModal} component={watchlistForm} comp={"watchlist-form"}/>
                 <div className="stocks-page"> 
                     <div className="stock-info">

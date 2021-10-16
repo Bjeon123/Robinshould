@@ -1,5 +1,5 @@
 import React from 'react';
-import DashNav from './dashboard_nav'
+import NavBar from './nav_bar_container'
 import Porfolio from './portfolio_container'
 import Watchlists from './watchlists';
 import BuyingPower from './buying_power';
@@ -40,7 +40,7 @@ class DashBoard extends React.Component{
                     <Modal close={this.closeModal} className="watchlist-modal" show={this.state.showModal} component={<BuyinPowerForm/>} comp={"buying-power-form"}/> 
                     : null
                 }
-                <DashNav theme={this.props.theme} user={this.props.user} logout={this.props.logout} />
+                <NavBar/>
                 <div className="dashboard">
                     <div className="dashboard-left">
                         <Porfolio user={this.props.user} holdings={this.props.user.holdings} />
