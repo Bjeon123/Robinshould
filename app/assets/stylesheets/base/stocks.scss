@@ -134,6 +134,17 @@
     margin-top: 20px;
 }
 
+.tf-errors{
+    margin-left: 20px;
+    margin-top: 20px;
+    font-family: avenir;
+}
+.fas.fa-exclamation-circle{
+    display: flex;
+}
+.fas.fa-exclamation-circle p{
+    margin-left: 5px;
+}
 #tf-footer{
     width: 100%;
     text-align: center;

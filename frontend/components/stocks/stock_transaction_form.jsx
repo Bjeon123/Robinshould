@@ -155,7 +155,7 @@ class StockTransactionForm extends React.Component{
                     </div>
                     <div className="tf-input-pair">
                         <label>Shares</label>
-                        <input onChange={(e) => this.setState({ form: { ...this.state.form, shares: e.target.value } })} type="number" value={this.state.form.shares}></input>
+                        <input onChange={(e) => this.setState({ form: { ...this.state.form, shares: e.target.value } })} type="text" value={this.state.form.shares}></input>
                     </div>
                     <div id="mkt-price"className="tf-input-pair pt2">
                         <label >Market Price</label>
@@ -165,7 +165,11 @@ class StockTransactionForm extends React.Component{
                         <label>Estimated Costs</label>
                         <h6>${(this.props.currentPrice * this.state.form.shares).toFixed(2)}</h6>
                     </div>
-                    <p>{this.state.errors}</p>
+                    {this.state.errors ? 
+                    <div className="tf-errors">
+                        <i className="fas fa-exclamation-circle"><p>Error</p></i>
+                        <p>{this.state.errors}</p>
+                    </div> : null}
                     <button onClick={this.handleSubmit} className="transaction-button">Execute Order</button>
                     {this.state.formType === "Buy Stock" ? 
                         <p id="tf-footer">${this.props.currentUser.total_capital.toFixed(2)} buying power available</p> :

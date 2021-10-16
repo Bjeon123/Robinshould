@@ -35,6 +35,7 @@ class Search extends React.Component{
 
     render(){
         let searchResults= []
+        let inputLenth = this.state.searchInput.length
         if(this.state.stocks !== null){
             if(this.state.stocks.length===0){
                 searchResults.push(<p>We were unable to find any results for your search.</p>)
@@ -47,7 +48,7 @@ class Search extends React.Component{
                 searchResults.push(
                     <Link to={`/stocks/${this.state.stocks[i].ticker}`}>
                         <div id={this.state.stocks[i].ticker} onClick={this.handleCloseResults} className="stock-row">
-                            <p className="search-stock-ele">{this.state.stocks[i].ticker} </p>
+                            <p className="search-stock-ele"><b>{this.state.stocks[i].ticker.slice(0,inputLenth)}</b>{this.state.stocks[i].ticker.slice(inputLenth)}</p>
                             <p>{this.state.stocks[i].company_name} </p>
                         </div>
                     </Link>
