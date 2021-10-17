@@ -35,19 +35,21 @@ class DashBoard extends React.Component{
 
     render(){
         return (
-            <div className= "dashboard-container">
-                {this.state.showModal ?
-                    <Modal close={this.closeModal} className="watchlist-modal" show={this.state.showModal} component={<BuyinPowerForm/>} comp={"buying-power-form"}/> 
-                    : null
-                }
-                <NavBar/>
-                <div className="dashboard">
-                    <div className="dashboard-left">
-                        <Porfolio user={this.props.user} holdings={this.props.user.holdings} />
-                        <BuyingPower showModal={this.showModal}/>   
-                        <News/>
+            <div>
+                <div className= "dashboard-container">
+                    {this.state.showModal ?
+                        <Modal theme={this.props.theme} close={this.closeModal} className="watchlist-modal" show={this.state.showModal} component={<BuyinPowerForm closeModal={this.closeModal}/>} comp={"buying-power-form"}/> 
+                        : null
+                    }
+                    <NavBar/>
+                    <div className="dashboard">
+                        <div className="dashboard-left">
+                            <Porfolio user={this.props.user} holdings={this.props.user.holdings} />
+                            <BuyingPower showModal={this.showModal}/>   
+                            <News/>
+                        </div>
+                        <Watchlists/>
                     </div>
-                    <Watchlists/>
                 </div>
             </div>
         )

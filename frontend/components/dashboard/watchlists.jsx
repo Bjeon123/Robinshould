@@ -1,9 +1,7 @@
 import React from 'react'
 import WatchListCard from './watchlistCard.jsx'
-import Modal from '../modal/modal'
-import WLForm from '../modal/wl_form'
 import Watchlist from './watchlist'
-import { fetchWatchlists, createNewWatchlist, deleteWatchlist } from '../../actions/watchlist_actions'
+import { fetchWatchlists, createNewWatchlist, deleteWatchlist,updateWatchlist } from '../../actions/watchlist_actions'
 import { getCurrentUser } from '../../actions/users_actions'
 import {connect} from 'react-redux'
 
@@ -12,7 +10,6 @@ class Watchlists extends React.Component{
         super(props)
         this.state={
             currentUser: window.currentUser,
-            showModal: false,
             addListForm: false,
             newWLName: "",
             prevsize: null,
@@ -40,7 +37,7 @@ class Watchlists extends React.Component{
     }
 
     handleClick(e){
-        this.props.deleteWatchlist(parseInt(e.target.id))
+        this.props.deleteWatchlist(parseInt(e.currentTarget.id))
     }
 
     cancelNewWL(){
@@ -51,7 +48,7 @@ class Watchlists extends React.Component{
         if (this.state.watchlists=== null || Object.keys(this.props.user).length==0){            
             return null;
         }
-        // const watchlistForm = <WLForm createWatchList={this.props.createNewWatchlist} closeModal={this.closeModal} user={this.props.user} />
+
         const { holdings } = this.props.user;
         const watchlists = this.props.watchlists;
         const holdingElements = Object.values(holdings).map(
@@ -67,10 +64,10 @@ class Watchlists extends React.Component{
             </div>
         </div>
         const watchlistsElements = watchlistsArr.map((watchlist,index) => {
-            return <Watchlist theme={this.props.theme} watchlist={watchlist} key={`${index}`} handleClick={this.handleClick}/>
+            return <Watchlist updateWatchlist={this.props.updateWatchlist} theme={this.props.theme} watchlist={watchlist} key={`${index}`} handleClick={this.handleClick}/>
         })
         return(
-            <div className={`watchlist-container ${this.props.theme}`}>
+            <div className={`watchlists-container ${this.props.theme}`}>
                 <div id="wl-stock-title-container">
                     <h3 id="wl-stock-title">Stocks</h3>
                 </div>
@@ -96,6 +93,7 @@ const mSTP= state=>(
 
 const mDTP = dispatch =>(
     {
+        updateWatchlist: watchlist =>dispatch(updateWatchlist(watchlist)),
         getCurrentUser: (user_id) => dispatch(getCurrentUser(user_id)),
         fetchWatchlists: () => dispatch(fetchWatchlists()),
         createNewWatchlist: (watchlist)=>dispatch(createNewWatchlist(watchlist)),

@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import { editCurrentUser } from '../../actions/users_actions'
-import BuyingPower from './wl_form'
+import BuyingPower from './buying_power_form'
 
 const mDTP = dispatch => (
     {
@@ -10,6 +10,7 @@ const mDTP = dispatch => (
 
 const mSTP = state =>(
     {
+        theme: state.theme,
         currentUser: state.user
     }
 )

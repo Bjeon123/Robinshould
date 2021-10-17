@@ -13,6 +13,14 @@ export const createNewWatchlist = (watchlist)=>(
     })
 )
 
+export const updateWatchlist = (watchlist)=>(
+    $.ajax({
+        method: "PATCH",
+        url: `/api/watchlists/${watchlist.id}`,
+        data: {watchlist}
+    })
+)
+
 export const deleteWatchlist = (id) => (
     $.ajax({
         method: "DELETE",

@@ -17,17 +17,15 @@ class Modal extends React.Component{
         let outerClass;
         const {comp} = this.props;
         if (comp === "watchlist-form"){
-            outerClass = "modal-content"
+            outerClass = "wl-form-modal"
         }
         else if (comp==="buying-power-form"){
             outerClass = "buying-power-container"
         }
         return(
-            <div className="modal" style={{ color: "white" }}>
-                <div className={outerClass}>
-                    <button onClick={()=>this.props.close()} className="close-modal">X</button>
+            <div className={outerClass} style={{ color: "white" }}>
+                    {comp==="watchlist-form" ? null : <button onClick={()=>this.props.close()} className={`close-modal ${this.props.theme}`}>X</button>}
                     {this.props.component}
-                </div>
             </div>
         )
     }

@@ -91,10 +91,15 @@ class WatchlistForm extends React.Component{
             }
         }
         return(
-            <div className="watchlist-form">
-                <h1>{`Add ${ticker} to Your Lists`}</h1>
-                {components}
-                <button onClick={this.handleSubmit} className=" watchlist-form-btn">Save Changes</button>
+            <div className="wl-form-container add">
+                <div className="watchlist-form">
+                    <div className="wl-form-title">
+                        <h1>{`Add ${ticker} to Your Lists`}</h1>
+                        <i onClick={this.props.closeModal} className="fas fa-times"></i>
+                    </div>
+                    {components}
+                    <button onClick={this.handleSubmit} className=" watchlist-form-btn">Save Changes</button>
+                </div>
             </div>
         )
     }

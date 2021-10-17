@@ -21,6 +21,12 @@ export const removeWatchlist = watchlistId => ({
     watchlistId
 })
 
+export const updateWatchlist = watchlist => dispatch =>(
+    APIUtil.updateWatchlist(watchlist).then(
+        (watchlist)=>dispatch(receiveWatchlist(watchlist))
+    )
+)
+
 export const fetchWatchlists = () => dispatch =>(
     APIUtil.fetchWatchlists().then(
         (watchlists)=>dispatch(receiveWatchlists(watchlists))

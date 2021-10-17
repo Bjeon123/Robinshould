@@ -1,4 +1,4 @@
-.modal{
+.wl-form-modal{
     position: fixed;
     top: 0;
     left: 0;
@@ -7,16 +7,70 @@
     background: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
-    align-items: center;
-    z-index: 1;
+    z-index: 2;
 }
 
-.modal-content{
-    width: 30%;
-    height: 50%;
+.wl-form-container{
+    width: 450px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
     background-color: #1E2124;
     border-radius: 4px;
 }
+
+.wl-form-container.edit{
+    margin-top: 40%;
+}
+
+.wl-form-container.add{
+    margin-top: 10%;
+    height: 50%;
+}
+
+
+
+input.wl-form-row{
+    outline: none;
+    border: 1px solid #30363a;
+    border-radius: 3px;
+    background-color: #30363a;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+button.wl-form-row{
+    background-color: #ff5000;
+    color: black;
+    border: none;
+    font-weight: bold;
+    border-radius: 3px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-bottom: 20px;
+}
+
+.wl-form-title{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 8%;
+    margin-left: 8%;
+    margin-top: 6%;
+    margin-bottom: 6%;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.wl-form-row{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+} 
 
 .wlform-outer{
     width: 20%;
@@ -74,10 +128,6 @@
     flex-direction: column;
     font-family: avenir;
 }
-.watchlist-form h1{
-    margin: 40px;
-    font-weight: bold;
-}
 
 .watchlist-form-btn{
     margin-top: 4%;
@@ -101,10 +151,13 @@
 }
 
 .buying-power-container{
-    margin-top: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background-color: black;
+    background: black;
+    z-index: 100;
 }
 
 .buying-power-form{
@@ -114,9 +167,48 @@
     justify-content: center;
     align-items: center;
 }
+.buying-power-form h1{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
 
 .bp-row{
     width: 40vw;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.bp-input{
+    width: 60%;
+    outline: none;
+    border: 1px solid #1f2124;
+    background-color: #1f2124;
+    border-radius: 4px;
+    padding: 10px;
+    caret-color: white;
+    color: white;
+}
+
+.add_fund_button.red{
+    background-color: #f14c01;
+    width: 30%;
+}
+
+.add_fund_button.green{
+    background-color: #00c806;
+    width: 30%;
+}
+.buying-power-container .close-modal{
+    background-color: black;
+}
+
+.close-modal.red:hover{
+    color: #f14c01;
+}
+
+.close-modal.green:hover{
+    color: #00c806;
 }

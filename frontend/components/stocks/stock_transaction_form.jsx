@@ -1,4 +1,5 @@
 import React from 'react'
+import { numToMoney } from '../../util/numbers_api.util'
 import { createHolding, updateHolding, deleteHolding } from '../../util/holdings_api_util'
 
 class StockTransactionForm extends React.Component{
@@ -163,7 +164,7 @@ class StockTransactionForm extends React.Component{
                     </div>
                     <div className="tf-input-pair pt2">
                         <label>Estimated Costs</label>
-                        <h6>${(this.props.currentPrice * this.state.form.shares).toFixed(2)}</h6>
+                        <h6>{numToMoney.format(this.props.currentPrice * this.state.form.shares)}</h6>
                     </div>
                     {this.state.errors ? 
                     <div className="tf-errors">
@@ -172,7 +173,7 @@ class StockTransactionForm extends React.Component{
                     </div> : null}
                     <button onClick={this.handleSubmit} className={`transaction-button ${this.props.theme}`}>Execute Order</button>
                     {this.state.formType === "Buy Stock" ? 
-                        <p id={`tf-footer-${this.props.theme}`}>${this.props.currentUser.total_capital.toFixed(2)} buying power available</p> :
+                        <p id={`tf-footer-${this.props.theme}`}>{numToMoney.format(this.props.currentUser.total_capital)} buying power available</p> :
                         <p id={`tf-footer-${this.props.theme}`}>{this.props.currentShares.shares} shares avaliable</p>
                     }
                 </form>
