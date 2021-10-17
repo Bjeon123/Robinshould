@@ -13,10 +13,9 @@ class NewsElement extends React.Component{
         const {newsData} = this.props
         let relatedStock = newsData.related.split(",")[0]
         let relatedStockLink = 
-                <Link to={`/stocks/${relatedStock}`}>
-                    <p id="stock-link">{relatedStock}</p>
-                </Link>
-        console.log(newsData)
+            <Link to={`/stocks/${relatedStock}`}>
+                <p id="stock-link">{relatedStock}</p>
+            </Link>
         return(
             <a href={newsData.url} target="_blank">
                 <div className="news-row-container">

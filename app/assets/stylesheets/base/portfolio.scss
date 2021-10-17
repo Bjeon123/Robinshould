@@ -46,6 +46,16 @@
     border-bottom: 2px solid #f14c01;
 }
 
+.portfolio.red button:hover{
+    color: #fa7e45;
+    background-color: transparent;
+}
+
+.portfolio.green button:hover{
+    color: #00c806;
+    background-color: transparent;
+}
+
 .activated.green{
     color: #00c806;
     border-bottom: 2px solid #00c806;

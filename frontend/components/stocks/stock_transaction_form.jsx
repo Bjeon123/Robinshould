@@ -136,7 +136,6 @@ class StockTransactionForm extends React.Component{
         if(this.state.form===undefined){
             return null;
         }
-        console.log(this.props)
         const hasShares = this.props.currentShares !==null;
         return(
             <div>

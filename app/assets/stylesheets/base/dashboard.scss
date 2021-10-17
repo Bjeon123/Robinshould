@@ -14,6 +14,19 @@
     margin-bottom: 3%;
 }
 
+.loading-page{
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
 .dashboard-left{
     display: block;
     width: 50%;

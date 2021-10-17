@@ -38,7 +38,6 @@ class BuyingPowerForm extends React.Component{
 
     render(){
         let moneyFormatted = parseFloat(this.state.money) > 0 ? numToMoney.format(parseFloat(this.state.money)) : "";
-        console.log(this.state)
         return(
             <form className="buying-power-form">
                 <div className="bp-row">

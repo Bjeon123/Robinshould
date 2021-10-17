@@ -6,7 +6,7 @@ import { fetchStockId,fetchintradayData,fetchStockWeekData, fetchStockMonthData,
 import {receiveTheme} from '../../actions/theme_actions'
 // import { createHolding,updateHolding,deleteHolding} from '../../actions/holding_actions'
 import {fetchWatchlists} from '../../actions/watchlist_actions'
-import {logout} from '../../actions/session_actions'
+import LoadingPage from '../loading/loading_screen'
 
 class StockContainer extends React.Component{
     constructor(props){
@@ -82,8 +82,8 @@ class StockContainer extends React.Component{
     }
 
     render(){
-        if(this.state.data===null){
-            return null;
+        if(this.state.data === null){
+            return <LoadingPage/>
         }
         else if(this.state.stock !== this.props.stock){
             this.updateComponent()

@@ -4,6 +4,7 @@ import Portfolio from './portfolio'
 import { fetchAllQuotes,fetchWeekQuotes, fetchMonthQuotes, fetchThreeMonthsQuotes, fetchOneYearQuotes, fetchFiveYearQuotes } from '../../util/stock_api_util'
 import { receiveTheme } from '../../actions/theme_actions'
 import {fetchStockTickers} from '../../util/stock_api_util'
+import LoadingPage from '../loading/loading_screen'
 
 class PortfolioContainer extends React.Component {
     constructor(props) {
@@ -69,20 +70,22 @@ class PortfolioContainer extends React.Component {
 
     render() {
         if(this.state.data === null){
-            return null
+            return <LoadingPage/>
         }
-        return (
-            <Portfolio 
-                theme = {this.props.theme}
-                receiveTheme = {this.props.receiveTheme}
-                user={this.props.user} 
-                holdings={this.props.holdings} 
-                timeframe={this.state.timeframe} 
-                data ={this.state.data} 
-                stocks={Object.values(this.state.stocks)}
-                changeData={this.changeData}>
-            </Portfolio>
-        )
+        else{
+            return (
+                <Portfolio 
+                    theme = {this.props.theme}
+                    receiveTheme = {this.props.receiveTheme}
+                    user={this.props.user} 
+                    holdings={this.props.holdings} 
+                    timeframe={this.state.timeframe} 
+                    data ={this.state.data} 
+                    stocks={Object.values(this.state.stocks)}
+                    changeData={this.changeData}>
+                </Portfolio>
+            )
+        }
     }
 }
 

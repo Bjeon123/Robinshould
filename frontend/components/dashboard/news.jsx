@@ -23,7 +23,6 @@ class News extends React.Component{
         }
         let newsRenderArr=[];
         const {news} = this.state
-        console.log(news)
         for(let i=0;i< this.state.news.length;i++){
             newsRenderArr.push(
                 <NewsElement newsData={news[i].news[0]}/>

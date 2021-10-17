@@ -7,6 +7,7 @@ import Modal from '../modal/modal'
 import WatchlistForm from '../modal/watchlist_form'
 import { formatSingleStockData,numToMoney,cashChange,percentChange } from '../../util/numbers_api.util'
 import NewsElement from '../news/news_element'
+import LoadingPage from '../loading/loading_screen'
 
 
 class Stock extends React.Component{
@@ -128,7 +129,7 @@ class Stock extends React.Component{
                 <Modal close={this.closeModal} className="watchlist-modal" show={this.state.showModal} component={watchlistForm} comp={"watchlist-form"}/>
                 <div className="stocks-page"> 
                     <div className="stock-info">
-                        <div className="stocks-page-chart">
+                        <div className={`stocks-page-chart ${this.props.theme}`}>
                             <h1>{this.props.compInfo.company.companyName}</h1>
                             {this.state.price ? <h1>{`${numToMoney.format(this.state.price)}`}</h1> : <h1>{`${numToMoney.format(data.currentPrice)}`}</h1>}
                             {this.state.price ? <p>{`${this.state.cashChange} (${this.state.percentChange})`}</p> : 

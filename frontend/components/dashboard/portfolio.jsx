@@ -68,7 +68,7 @@ class Portfolio extends React.Component{
             timeframe = "All Time"
         }
         return(
-            <div className="portfolio">
+            <div className={`portfolio ${this.props.theme}`}>
                 <div className="portfolio-numbers">
                     {this.state.price ? <h1>{`${numToMoney.format(this.state.price)}`}</h1> : <h1>{`${numToMoney.format(this.state.data.currentPrice)}`}</h1>}
                     {this.state.price ? <p>{`${this.state.cashChange} (${this.state.percentChange})`}</p> : 

@@ -27,16 +27,12 @@ class WatchListCard extends React.Component{
             )
         }
         else{
-            fetchStockTicker(this.props.holding.ticker_id).then(
-                (ticker)=>{
-                    this.setState({ticker: ticker.ticker})
-                    fetchintradayData(ticker.ticker).then(
-                        (tickerdata) => {
-                            this.setState(
-                                { ticker: ticker.ticker, data: tickerdata, type: "holding"  }
-                        )}
-                    )
-                }
+            const {ticker} = this.props.holding
+            fetchintradayData(ticker).then(
+                (tickerdata) => {
+                    this.setState(
+                        { ticker: ticker, data: tickerdata, type: "holding"  }
+                )}
             )
         }
     }
@@ -47,7 +43,6 @@ class WatchListCard extends React.Component{
         }
         const dataFormatted = formatSingleStockData(this.state.data);
         const realColor = dataFormatted.color === "green" ? '#00c806' : '#f14c01'
-        // const percentChange = (((this.state.data['intraday-prices'][lastIdx].close - this.state.data['intraday-prices'][0].close) / this.state.data['intraday-prices'][0].close) * 100).toFixed(2);
         const info = this.state.type === "watchlist" ? 
             <div><h1>{this.state.ticker}</h1></div> :
             <div className="card-ticker-share">
