@@ -82,7 +82,7 @@ class Stock extends React.Component{
             }
             else{
                 newsRenderArr.push(
-                    <NewsElement newsData={news[i]}/>
+                    <NewsElement key={`${i}${Math.random()*3}`} newsData={news[i]}/>
                 )
             }
         }
