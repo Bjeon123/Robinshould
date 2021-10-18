@@ -91,7 +91,7 @@ class Stock extends React.Component{
 
     render(){
         const {data} = this.state;
-        const watchlistForm = <WatchlistForm fetchWatchlists={this.props.fetchWatchlists} closeModal={this.closeModal} watchlists={this.props.watchlists} ticker={this.props.stock} stockId={this.props.stockId}/>
+        const watchlistForm = <WatchlistForm theme={this.props.theme} fetchWatchlists={this.props.fetchWatchlists} closeModal={this.closeModal} watchlists={this.props.watchlists} ticker={this.props.stock} stockId={this.props.stockId}/>
         let currentShares = null;
         for (const holdingId in this.props.currentUser.holdings) {
             if (this.props.currentUser.holdings[holdingId].ticker_id === this.props.stockId) {
@@ -132,21 +132,24 @@ class Stock extends React.Component{
                         <div className={`stocks-page-chart ${this.props.theme}`}>
                             <h1>{this.props.compInfo.company.companyName}</h1>
                             {this.state.price ? <h1>{`${numToMoney.format(this.state.price)}`}</h1> : <h1>{`${numToMoney.format(data.currentPrice)}`}</h1>}
-                            {this.state.price ? <p>{`${this.state.cashChange} (${this.state.percentChange})`}</p> : 
+                            {this.state.price ? 
+                            <div className="portfolio-cash-percent">
+                                <p>{`${this.state.cashChange} (${this.state.percentChange})`}</p> 
+                            </div>: 
                             <div className="portfolio-cash-percent">
                                 <p>{`${data.cashChange} (${data.percentChange}) `}</p>
                                 <p id="timeframe">{`${timeframe}`}</p>
                             </div>}
                             {/* <p>{`${data.cashChange} (${data.percentChange})`}</p> */}
-                            <div>
+                            <div className="stock-chart">
                                 <LineGraph setPrice={this.setPrice} max={data.max} min={data.min} data={data.data} color={data.color}></LineGraph>
+                                <button className={this.props.timeframe == "1D" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1D")}>1D</button>
+                                <button className={this.props.timeframe == "1W" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1W")}>1W</button>
+                                <button className={this.props.timeframe == "1M" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1M")}>1M</button>
+                                <button className={this.props.timeframe == "3M" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("3M")}>3M</button>
+                                <button className={this.props.timeframe == "1Y" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1Y")}>1Y</button>
+                                <button className={this.props.timeframe == "5Y" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("5Y")}>5Y</button>
                             </div>
-                            <button className={this.props.timeframe == "1D" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1D")}>1D</button>
-                            <button className={this.props.timeframe == "1W" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1W")}>1W</button>
-                            <button className={this.props.timeframe == "1M" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1M")}>1M</button>
-                            <button className={this.props.timeframe == "3M" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("3M")}>3M</button>
-                            <button className={this.props.timeframe == "1Y" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1Y")}>1Y</button>
-                            <button className={this.props.timeframe == "5Y" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("5Y")}>5Y</button>
                         </div>
                         <div>
                             {sharesComponent}

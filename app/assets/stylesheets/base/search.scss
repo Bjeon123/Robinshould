@@ -5,6 +5,7 @@
 
 .search-container p{
     font-size: .8em;
+    margin-bottom: 8px;
 }
 
 .stock-row{
@@ -37,8 +38,8 @@
     display: flex;
     position: absolute;
     top: 0;
+    left: 15vw;
     margin-top: 12px;
-    margin-left: 10%;
     flex-direction: column;
     padding-left: 1%;
 }

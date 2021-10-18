@@ -1,10 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Portfolio from './portfolio'
-import { fetchAllQuotes,fetchWeekQuotes, fetchMonthQuotes, fetchThreeMonthsQuotes, fetchOneYearQuotes, fetchFiveYearQuotes } from '../../util/stock_api_util'
+import { fetchAllQuotes,fetchWeekQuotes, fetchMonthQuotes,fetchintradayData, fetchThreeMonthsQuotes, fetchOneYearQuotes, fetchFiveYearQuotes } from '../../util/stock_api_util'
 import { receiveTheme } from '../../actions/theme_actions'
 import {fetchStockTickers} from '../../util/stock_api_util'
 import LoadingPage from '../loading/loading_screen'
+import stock_transaction_form_container from '../stocks/stock_transaction_form_container'
 
 class PortfolioContainer extends React.Component {
     constructor(props) {
@@ -65,7 +66,16 @@ class PortfolioContainer extends React.Component {
         for (let i = 0; i < StockArr.length; i++) {
             tickerArr.push(StockArr[i].ticker)
         }
-        fetchAllQuotes(tickerArr).then((data) => this.setState({data}))
+        if(Object.values(this.state.stocks).length === 0){
+            fetchintradayData('AAPL').then(
+                data =>{
+                    this.setState({data: data})
+                }
+            )
+        }
+        else{
+            fetchAllQuotes(tickerArr).then((data) => this.setState({data}))
+        }
     }
 
     render() {
@@ -78,7 +88,7 @@ class PortfolioContainer extends React.Component {
                     theme = {this.props.theme}
                     receiveTheme = {this.props.receiveTheme}
                     user={this.props.user} 
-                    holdings={this.props.holdings} 
+                    holdings={this.props.holdings||{}} 
                     timeframe={this.state.timeframe} 
                     data ={this.state.data} 
                     stocks={Object.values(this.state.stocks)}

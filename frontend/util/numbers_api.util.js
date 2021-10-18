@@ -24,7 +24,7 @@ export const cashChange = (firstPrice, lastPrice)=>{
     return `${symbol}${numToMoney.format(changed)}` 
 }
 
-export const formatSingleStockData = (data,timeframe) => {
+export const formatSingleStockData = (data,timeframe,user) => {
     const datapoints = data['intraday-prices'] ? data['intraday-prices'] : data['chart']
     const dataLastIdx = datapoints.length - 1;
     let dataHasTime = (timeframe === "3M" || timeframe === "1Y" || timeframe === "5Y") ? false : true;
@@ -43,12 +43,17 @@ export const formatSingleStockData = (data,timeframe) => {
             max = datapoint['close']
         }
         let newRow = {};
-        if(datapoint['close']){
-            lastNonZeroPrice = datapoint['close'];
-            newRow['price'] = datapoint['close'];
+        if(user){
+            newRow['price'] = user.total_capital
         }
         else{
-            newRow['price'] = lastNonZeroPrice
+            if(datapoint['close']){
+                lastNonZeroPrice = datapoint['close'];
+                newRow['price'] = datapoint['close'];
+            }
+            else{
+                newRow['price'] = lastNonZeroPrice
+            }
         }
         if (dataHasTime) {
             const date = datapoint['date'].split("-")

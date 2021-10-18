@@ -11,11 +11,11 @@ class NewsElement extends React.Component{
 
     render(){
         const {newsData} = this.props
-        let relatedStock = newsData.related.split(",")[0]
-        let relatedStockLink = 
-            <Link to={`/stocks/${relatedStock}`}>
-                <p id="stock-link">{relatedStock}</p>
-            </Link>
+        // let relatedStock = newsData.related.split(",")[0]
+        // let relatedStockLink = 
+        //     <Link to={`/stocks/${relatedStock}`}>
+        //         <p id="stock-link">{relatedStock}</p>
+        //     </Link>
         return(
             <a href={newsData.url} target="_blank">
                 <div className="news-row-container">
@@ -27,9 +27,9 @@ class NewsElement extends React.Component{
                         <div className="article">
                             <div>
                                 <p className="news-headline">{newsData.headline}</p>
-                                <div className="related-stocks">
+                                {/* <div className="related-stocks">
                                     Feautured: {relatedStockLink}
-                                </div>
+                                </div> */}
                             </div>
                             <img className="news-image" src ={newsData.image}/>
                         </div>

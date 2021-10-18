@@ -48,8 +48,11 @@ class Watchlists extends React.Component{
         if (this.state.watchlists=== null || Object.keys(this.props.user).length==0){            
             return null;
         }
-        const {holdings} = this.props.user;
+        let {holdings} = this.props.user;
         const watchlists = this.props.watchlists;
+        if(holdings===undefined){
+            holdings={}
+        }
         const holdingElements = Object.values(holdings).map(
                 (holding,index) => {  
                 return(

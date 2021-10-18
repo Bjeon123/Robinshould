@@ -1,10 +1,24 @@
 .fa-check{
     padding: 4px;
-    border: 2px solid red;
-    color:white;
+    color: transparent;
     border-radius: 3px;
 }
 
-.fa-check.checked{
-    background-color: red;
+.fa-check.red{
+    border: 2px solid #f14c01;
 }
+
+.fa-check.green{
+    border: 2px solid #00c806;
+}
+
+.fa-check.checked.red{
+    color: black;
+    background-color: #f14c01
+}
+
+.fa-check.checked.green{
+    color: black;
+    background-color: #00c806;
+}
+

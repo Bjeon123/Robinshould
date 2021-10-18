@@ -140,7 +140,7 @@ class StockTransactionForm extends React.Component{
         return(
             <div>
                 <form className="transaction-form">
-                    <div className="transaction-options">
+                    <div className={`transaction-options ${this.props.theme}`}>
                         <h1 onClick={()=>this.changeFormType("Buy Stock")} id={this.state.formType === "Buy Stock" ? `active-transaction-${this.props.theme}` : "inactive-transaction"}>{`Buy ${this.props.ticker}`}</h1>
                         {hasShares ? 
                             <h1 onClick={()=>this.changeFormType("Sell Stock")} id={this.state.formType === "Sell Stock" ? `active-transaction-${this.props.theme}` : "inactive-transaction"} >{`Sell ${this.props.ticker}`}</h1> :

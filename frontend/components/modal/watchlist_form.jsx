@@ -16,18 +16,18 @@ class WatchlistForm extends React.Component{
             for (let j = 0; j < watchlistsArr[i].stocks.length; j++) {
                 if (watchlistsArr[i].stocks[j].id === stockId) {
                     pushed = true
-                    this.setState({ [watchlistsArr[i].id]: ["fas fa-check checked",false] })
+                    this.setState({ [watchlistsArr[i].id]: [`fas fa-check checked ${this.props.theme}`,false] })
                     break;
                 }
             }
             if (pushed === false) {
-                this.setState({ [watchlistsArr[i].id]: ["fas fa-check", false] })
+                this.setState({ [watchlistsArr[i].id]: [`fas fa-check ${this.props.theme}`, false] })
             }
         }
     }
 
     handleClick(e){
-        const nextClass = e.target.className === "fas fa-check checked" ? "fas fa-check" : "fas fa-check checked" ;
+        const nextClass = e.target.className === `fas fa-check checked ${this.props.theme}` ? `fas fa-check ${this.props.theme}` : `fas fa-check checked ${this.props.theme}` ;
         const wlid = parseInt(e.target.id)
         const changed = !this.state[wlid][1]
         this.setState({[wlid]: [nextClass,changed]})
@@ -36,7 +36,7 @@ class WatchlistForm extends React.Component{
     handleSubmit(){
         for(const wlid in this.state){
             if(this.state[wlid][1]==true){
-                if (this.state[wlid][0] === "fas fa-check checked"){
+                if (this.state[wlid][0] === `fas fa-check checked ${this.props.theme}`){
                     addStockToWatchlist(
                         {
                             watchlist_id: wlid,
@@ -74,7 +74,7 @@ class WatchlistForm extends React.Component{
                     pushed=true
                     components.push(
                         <div className="watchlist-form-row">
-                            <i onClick={this.handleClick} id={watchlistsArr[i].id} className={this.state[watchlistsArr[i].id][0]}></i>
+                            <i onClick={this.handleClick} id={watchlistsArr[i].id} className={`${this.state[watchlistsArr[i].id][0]}`}></i>
                             <p>{watchlistsArr[i].name}</p>
                         </div>
                     )
@@ -84,21 +84,22 @@ class WatchlistForm extends React.Component{
             if(pushed===false){
                 components.push(
                     <div className="watchlist-form-row">
-                        <i onClick={this.handleClick} id={watchlistsArr[i].id} className={this.state[watchlistsArr[i].id][0]}></i>
+                        <i onClick={this.handleClick} id={watchlistsArr[i].id} className={`${this.state[watchlistsArr[i].id][0]}`}></i>
                         <p>{watchlistsArr[i].name}</p>
                     </div>
                 )
             }
         }
+        console.log(this.state)
         return(
-            <div className="wl-form-container add">
+            <div className="wl-form-container">
                 <div className="watchlist-form">
                     <div className="wl-form-title">
                         <h1>{`Add ${ticker} to Your Lists`}</h1>
                         <i onClick={this.props.closeModal} className="fas fa-times"></i>
                     </div>
                     {components}
-                    <button onClick={this.handleSubmit} className=" watchlist-form-btn">Save Changes</button>
+                    <button onClick={this.handleSubmit} className={`watchlist-form-btn ${this.props.theme}`}>Save Changes</button>
                 </div>
             </div>
         )

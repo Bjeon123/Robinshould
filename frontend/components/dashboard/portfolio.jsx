@@ -1,16 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import LineGraph from '../charts/line_graph'
-import {numToMoney,cashChange, percentChange} from '../../util/numbers_api.util'
+import {numToMoney,cashChange, percentChange, formatSingleStockData} from '../../util/numbers_api.util'
 import {formatPortfolio} from '../../util/numbers_api.util'
 
 class Portfolio extends React.Component{
     constructor(props){
         super(props)
-        this.state={
-            price: "",
-            percentChange: "",
-            cashChange: "",
-            data: formatPortfolio(this.props.data,this.props.timeframe, this.props.holdings,this.props.user.total_capital)
+        if(Object.values(props.holdings).length){
+            this.state={
+                price: "",
+                percentChange: "",
+                cashChange: "",
+                data: formatPortfolio(this.props.data,this.props.timeframe, this.props.holdings,this.props.user.total_capital)
+            }
+        }
+        else{
+            this.state={
+                data: formatSingleStockData(this.props.data,this.props.timeframe,this.props.user),
+                price: "",
+                percentChange: "",
+                cashChange: "",
+            }
         }
         this.setPrice=this.setPrice.bind(this)
     }
@@ -25,12 +35,17 @@ class Portfolio extends React.Component{
             return {}
         }
         else{
-            let newData = formatPortfolio(props.data,props.timeframe, props.holdings,props.user.total_capital)
-            const color = newData.firstPrice < newData.currentPrice ? "green" : "red";
-            if(props.theme !== color){
-                props.receiveTheme(color)
+            if(Object.values(props.holdings).length){
+                let newData = formatPortfolio(props.data,props.timeframe, props.holdings,props.user.total_capital)
+                const color = newData.firstPrice < newData.currentPrice ? "green" : "red";
+                if(props.theme !== color){
+                    props.receiveTheme(color)
+                }
+                return {data: newData };
             }
-            return {data: newData };
+            else{
+                return{}
+            }
         }
     }
 
@@ -71,19 +86,34 @@ class Portfolio extends React.Component{
             <div className={`portfolio ${this.props.theme}`}>
                 <div className="portfolio-numbers">
                     {this.state.price ? <h1>{`${numToMoney.format(this.state.price)}`}</h1> : <h1>{`${numToMoney.format(this.state.data.currentPrice)}`}</h1>}
-                    {this.state.price ? <p>{`${this.state.cashChange} (${this.state.percentChange})`}</p> : 
+                    {this.state.price ? 
+                    <div className="portfolio-cash-percent">
+                        <p>{`${this.state.cashChange} (${this.state.percentChange})`}</p> 
+                    </div>: 
                     <div className="portfolio-cash-percent">
                         <p>{`${this.state.data.cashChange} (${this.state.data.percentChange}) `}</p>
                         <p id="timeframe">{`${timeframe}`}</p>
                     </div>}
                 </div>
                 <LineGraph max={this.state.data.max} min={this.state.data.min} data={this.state.data.data} color={this.state.data.color} setPrice={this.setPrice} />
-                <button className={this.props.timeframe == "1D" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1D")}>1D</button>
-                <button className={this.props.timeframe == "1W" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1W")}>1W</button>
-                <button className={this.props.timeframe == "1M" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1M")}>1M</button>
-                <button className={this.props.timeframe == "3M" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("3M")}>3M</button>
-                <button className={this.props.timeframe == "1Y" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1Y")}>1Y</button>
-                <button className={this.props.timeframe == "5Y" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("5Y")}>ALL</button>
+                { Object.values(this.props.holdings).length ?
+                <div> 
+                 <button className={this.props.timeframe == "1D" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1D")}>1D</button>
+                 <button className={this.props.timeframe == "1W" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1W")}>1W</button>
+                 <button className={this.props.timeframe == "1M" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1M")}>1M</button>
+                 <button className={this.props.timeframe == "3M" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("3M")}>3M</button>
+                 <button className={this.props.timeframe == "1Y" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("1Y")}>1Y</button>
+                 <button className={this.props.timeframe == "5Y" ? `activated ${this.props.theme}` : ""} onClick={() => this.props.changeData("5Y")}>ALL</button>
+                 </div> :
+                 <div>
+                    <button className={this.props.timeframe == "1D" ? `activated ${this.props.theme}` : ""} >1D</button>
+                    <button className={this.props.timeframe == "1W" ? `activated ${this.props.theme}` : ""} >1W</button>
+                    <button className={this.props.timeframe == "1M" ? `activated ${this.props.theme}` : ""} >1M</button>
+                    <button className={this.props.timeframe == "3M" ? `activated ${this.props.theme}` : ""} >3M</button>
+                    <button className={this.props.timeframe == "1Y" ? `activated ${this.props.theme}` : ""} >1Y</button>
+                    <button className={this.props.timeframe == "5Y" ? `activated ${this.props.theme}` : ""} >ALL</button>
+                  </div>
+                }
             </div>
         )
     }
