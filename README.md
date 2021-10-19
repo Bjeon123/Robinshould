@@ -3,16 +3,16 @@
 Robinshould is a clone of a website called Robinhood. Robinshould allows users to buy and sell stock for more than 8,000 stocks all of which have data such as  real-time data, historical data and much more which users can use to study which stocks they want to buy.
 ## Live Link to Robinshould 
 https://robinshould.herokuapp.com/
-
+<img src ="/app/assets/images/splash.png"/>
 ## Features
 ### Stocks
 Users can see data represented by linegraphs and dynamically change the graph data by changing the timeframe of the stock. Users can also buy and sell stocks on market orders and see the number of shares they bought as well as the average price of their holding. 
 <br/>
-<img src ="/app/assets/images/Screen Shot2021-10-19at12.44.22PM.png"/>
-![StockPage](/app/assets/images/Screen Shot 2021-10-19 at 12.44.22 PM.png)
+<img src ="/app/assets/images/portfolio.png"/>
 ### Watchlists
 Users can create watchlists with different names in order to organize the stocks that they are watching or researching. Users can add and delete stocks from a list, as well as change the name or delete a watchlist. 
-
+<br/>
+<img src ="/app/assets/images/stockPage.png"/>
 ## Featured Code
 ```javascript
   # The state of Porfolio Component
@@ -80,7 +80,7 @@ Working on this component taught me much about optimizing the time complexity of
         }
     }
 ```
-Planning when to make calls to fetch data according to the timeframe that the user wanted taught me how to use asynchronous calls. The fetched data is formatted differently I had to make sure that the timeframe and data that is fetched changes the state at the same time so that there is no "cannot read undefined" errors when reading data.
+Planning when to make calls to fetch data according to the timeframe that the user wanted taught me how to use asynchronous calls. The fetched data is formatted differently for different timeframes, therefore I had to make sure that the timeframe and data that is fetched changes the state at the same time so that there is no "cannot read undefined" errors when formatting data.
 
 ## Technologies Used
 #### Frontend
@@ -92,7 +92,19 @@ Planning when to make calls to fetch data according to the timeframe that the us
 * Ruby
 * Rails
 * PostgreSQL
-#### Data API
+#### Stock Data API
 * IEX Cloud
+
+## Deployment Instructions
+1. Clone the repo on your machine.
+2. Delete Gemfile and package-json lock files, if needed.
+3. Run the following commands:
+* Make sure to have PostgreSQL running.
+* `npm install`
+* `bundle install`
+* `bundle exec rails db:create`
+* `bundle exec rails db:setup`
+* `npm run webpack`
+* In a new terminal, run `bundle exec rails s`
 
 
