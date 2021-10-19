@@ -80,7 +80,7 @@ Working on this component taught me much about optimizing the time complexity of
         }
     }
 ```
-Planning when to make calls to fetch data according to the timeframe that the user wanted taught me how to use asynchronous calls. The fetched data is formatted differently I had to make sure that the timeframe and data that is fetched changes the state at the same time so that there is no "cannot read undefined" errors when reading data.
+Planning when to make calls to fetch data according to the timeframe that the user wanted taught me how to use asynchronous calls. The fetched data is formatted differently for different timeframes, therefore I had to make sure that the timeframe and data that is fetched changes the state at the same time so that there is no "cannot read undefined" errors when formatting data.
 
 ## Technologies Used
 #### Frontend
@@ -92,7 +92,7 @@ Planning when to make calls to fetch data according to the timeframe that the us
 * Ruby
 * Rails
 * PostgreSQL
-#### Data API
+#### Stock Data API
 * IEX Cloud
 
 ## Deployment Instructions
