@@ -9,18 +9,16 @@ Robinshould is a clone of a website called Robinhood. Robinshould allows users t
 https://robinshould.herokuapp.com/
 
 ### Technologies Used
-Frontend-Technologies
+#### Frontend-Technologies
 * React
 * Redux
 * HTML
 * CSS/SCSS
-<br/>
-Backend-Technologies
+#### Backend-Technologies
 * Ruby
 * Rails
 * PostgreSQL
-<br/>
-Data API
+#### Data API
 * IEX Cloud
 
 
