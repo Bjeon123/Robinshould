@@ -3,16 +3,16 @@
 Robinshould is a clone of a website called Robinhood. Robinshould allows users to buy and sell stock for more than 8,000 stocks all of which have data such as  real-time data, historical data and much more which users can use to study which stocks they want to buy.
 ## Live Link to Robinshould 
 https://robinshould.herokuapp.com/
-
+<img src ="/app/assets/images/splashPage.png"/>
 ## Features
 ### Stocks
 Users can see data represented by linegraphs and dynamically change the graph data by changing the timeframe of the stock. Users can also buy and sell stocks on market orders and see the number of shares they bought as well as the average price of their holding. 
 <br/>
-<img src ="/app/assets/images/greenTree.png"/>
-![StockPage](/app/assets/images/Screen Shot 2021-10-19 at 12.44.22 PM.png)
+<img src ="/app/assets/images/stockPage.png"/>
 ### Watchlists
 Users can create watchlists with different names in order to organize the stocks that they are watching or researching. Users can add and delete stocks from a list, as well as change the name or delete a watchlist. 
-
+<br/>
+<img src ="/app/assets/images/portfolio.png/>
 ## Featured Code
 ```javascript
   # The state of Porfolio Component
