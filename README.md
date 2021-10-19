@@ -99,7 +99,6 @@ Planning when to make calls to fetch data according to the timeframe that the us
 1. Clone the repo on your machine.
 2. Delete Gemfile and package-json lock files, if needed.
 3. Run the following commands:
-<br/>
 * Make sure to have PostgreSQL running.
 * `npm install`
 * `bundle install`
