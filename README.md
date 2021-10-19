@@ -14,10 +14,12 @@ Frontend-Technologies
 * Redux
 * HTML
 * CSS/SCSS
+<br/>
 Backend-Technologies
 * Ruby
 * Rails
 * PostgreSQL
+<br/>
 Data API
 * IEX Cloud
 
