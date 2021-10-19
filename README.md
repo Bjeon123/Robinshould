@@ -8,7 +8,7 @@ https://robinshould.herokuapp.com/
 ### Stocks
 Users can see data represented by linegraphs and dynamically change the graph data by changing the timeframe of the stock. Users can also buy and sell stocks on market orders and see the number of shares they bought as well as the average price of their holding. 
 <br/>
-<img src ="/app/assets/images/Screen Shot2021-10-19at12.44.22PM.png"/>
+<img src ="/app/assets/images/greenTree.png"/>
 ![StockPage](/app/assets/images/Screen Shot 2021-10-19 at 12.44.22 PM.png)
 ### Watchlists
 Users can create watchlists with different names in order to organize the stocks that they are watching or researching. Users can add and delete stocks from a list, as well as change the name or delete a watchlist. 
