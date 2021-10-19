@@ -9,7 +9,7 @@ Robinshould is a clone of a website called Robinhood. Robinshould allows users t
 https://robinshould.herokuapp.com/
 
 ### Technologies Used
-####Frontend
+Frontend
 *
 To create the website I used React and Redux in order to create components that render onto the screen as well as send API calls to multiple databases. I used Ruby on Rails in the backend in order to handle authentication of users, receive calls from the frontend, and to send data back to the react elements. In order to store information on the user's stocks, watchlist info, etc. Postgresql was used.
 
