@@ -40,8 +40,8 @@ const Splash = (props) =>{
             <div className="splash-footer">
                 <div>
                     <h1>Links</h1>
-                    <a href="https://github.com/Bjeon123"><h2>Github</h2></a>
-                    <a href="https://www.linkedin.com/in/byung-jeon-01a68812a/"><h2>LinkedIn</h2></a>
+                    <a target="_blank" href="https://github.com/Bjeon123/Robinshould"><h2>Github</h2></a>
+                    <a target="_blank" href="https://www.linkedin.com/in/byung-jeon-01a68812a/"><h2>LinkedIn</h2></a>
                 </div>
                 <div>
                     <h1>Contact Me</h1>

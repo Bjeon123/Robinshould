@@ -45,7 +45,7 @@ class DashNav extends React.Component{
                         </div>
                     </div>
                 </a>
-                <a target="_blank" href="https://github.com/Bjeon123">
+                <a target="_blank" href="https://github.com/Bjeon123/Robinshould">
                     <div id="dropdown-last-link" className="personal-links">
                         <div className="personal-links-inner">
                             <i className="fab fa-github"></i>
@@ -74,7 +74,7 @@ class DashNav extends React.Component{
                         <Link to={"/dashboard"}>
                             <button>Portfolio</button>
                         </Link>
-                        <button><a target="_blank" href="https://github.com/Bjeon123">Github</a></button>
+                        <button><a target="_blank" href="https://github.com/Bjeon123/Robinshould">Github</a></button>
                         <button><a target="_blank" href="https://www.linkedin.com/in/byung-sam-jeon-01a68812a/">LinkedIn</a></button>
                         <button onClick={(e)=>this.handleClick(e)}>Account</button>
                     </div>
