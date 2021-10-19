@@ -1,53 +1,85 @@
 .signup-page{
+    height: 100%;
     display: flex;
     flex-direction: column;
-    padding-top: 1%;
+    padding-top: 3%;
     margin-left: 10%;
+    font-family: avenir;
 }
 
 .signup-page img{
-    margin-top: 30px;
-    margin-bottom: 80px;
+    margin-bottom: 10%;
 }
 
+.signup-header{
+    margin-bottom: 20px;
+}
+
+#caution{
+    font-size: .8em;
+    font-weight: bold;
+    margin-bottom: 3%;
+}
+
+.signup-page h1{
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 3%;
+}
 
 .signup-page input{
+    outline: none;
     height: 30px;
     background-color: rgb(245, 245, 245);
     border: 1px solid white;
     border-radius: 3px;
 }
 
+.signup-page input:focus{
+    border: 1px solid #5fda61;
+}
+
 .signup-input{
-    margin-bottom: 15px;
-    width: 590px;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 .name-form{
     display: flex;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .name-form input{
-    margin-right: 10px;
-    width: 287px;
+    width: 47%;
 }
 
 .signup-page button{
-    margin-top: 35px;
+    margin-top: 2%;
+    margin-bottom: 3%;
     height: 50px;
     width: 150px;
+    color: white;
     background-color: rgb(29, 197, 29);
     border: 1px solid white;
     border-radius: 5px;
 }
 
+ul li{
+    list-style-type: circle;
+    color: rgba(255, 102, 0, 0.89);
+    margin-bottom: 2%;
+}
+
 .signup-page button:hover{
-    background-color: green;
+    background-color: rgb(2, 168, 2);
 }
 
 .signup-page-container{
     display: flex;
+    height: 100vh;
     justify-content: space-between;
+    overflow-y: hidden;
 }
 
 .signup-page-description{
@@ -58,7 +90,7 @@
     font-family: avenir;
     background-color: rgb(245, 245, 245);
     width: 20%;
-    height: 650px;
+    height: 100%;
 }
 .signup-page-description h1{
     font-size: 1em;
