@@ -90,7 +90,6 @@ class WatchlistForm extends React.Component{
                 )
             }
         }
-        console.log(this.state)
         return(
             <div className="wl-form-container">
                 <div className="watchlist-form">
